@@ -1,0 +1,14 @@
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1\SLTB ETL Tool V1\bin\Debug\SLTB ETL Tool V1.exe.config
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1\SLTB ETL Tool V1\bin\Debug\SLTB ETL Tool V1.exe
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1\SLTB ETL Tool V1\bin\Debug\SLTB ETL Tool V1.pdb
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1\SLTB ETL Tool V1\obj\Debug\SLTB ETL Tool V1.csproj.AssemblyReference.cache
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1\SLTB ETL Tool V1\obj\Debug\SLTB_ETL_Tool_V1.Properties.Resources.resources
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1\SLTB ETL Tool V1\obj\Debug\SLTB ETL Tool V1.csproj.GenerateResource.cache
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1\SLTB ETL Tool V1\obj\Debug\SLTB ETL Tool V1.csproj.CoreCompileInputs.cache
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1\SLTB ETL Tool V1\obj\Debug\SLTB ETL Tool V1.exe
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1\SLTB ETL Tool V1\obj\Debug\SLTB ETL Tool V1.pdb
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1\SLTB ETL Tool V1\obj\Debug\SLTB ETL Tool V1.exe.config
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1\SLTB ETL Tool V1\obj\Debug\SLTB_ETL_Tool_V1.Form1.resources
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1\SLTB ETL Tool V1\bin\Debug\Guna.UI2.dll
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1\SLTB ETL Tool V1\obj\Debug\SLTB ETL.5610A436.Up2Date
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1\SLTB ETL Tool V1\obj\Debug\SLTB_ETL_Tool_V1.All_User_Controllers.UC_GetData.resources
