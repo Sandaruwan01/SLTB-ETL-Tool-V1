@@ -51,6 +51,16 @@ namespace SLTB_ETL_Tool_V1
             this.uC_GetData1.BringToFront();
         }
 
-        
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            this.uC_Home1.Visible = true;
+            this.uC_Home1.BringToFront();
+        }
+
+        private void btnFactory_Click(object sender, EventArgs e)
+        {
+            this.uC_Factory1.Visible = true;
+            this.uC_Factory1.BringToFront();
+        }
     }
 }

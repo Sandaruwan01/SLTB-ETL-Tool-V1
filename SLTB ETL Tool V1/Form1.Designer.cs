@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnPannel = new System.Windows.Forms.Panel();
+            this.btnFactory = new Guna.UI2.WinForms.Guna2Button();
             this.btnExport = new Guna.UI2.WinForms.Guna2Button();
             this.btnSale = new Guna.UI2.WinForms.Guna2Button();
             this.btnLoadData = new Guna.UI2.WinForms.Guna2Button();
@@ -45,6 +46,12 @@
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.HomePnannel = new System.Windows.Forms.Panel();
             this.uC_GetData1 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_GetData();
+            this.uC_Factory2 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_Factory();
+            this.uC_Factory1 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_Factory();
+            this.uC_Home1 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_Home();
+            this.ElipseHome = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.ElipseFactory = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.uC_Factory3 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_Factory();
             this.btnPannel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMini)).BeginInit();
@@ -58,7 +65,9 @@
             // 
             this.btnPannel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPannel.BackColor = System.Drawing.Color.MidnightBlue;
+            this.btnPannel.BackColor = System.Drawing.Color.Black;
+            this.btnPannel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPannel.Controls.Add(this.btnFactory);
             this.btnPannel.Controls.Add(this.btnExport);
             this.btnPannel.Controls.Add(this.btnSale);
             this.btnPannel.Controls.Add(this.btnLoadData);
@@ -70,11 +79,44 @@
             this.btnPannel.Size = new System.Drawing.Size(291, 803);
             this.btnPannel.TabIndex = 0;
             // 
+            // btnFactory
+            // 
+            this.btnFactory.Animated = true;
+            this.btnFactory.AnimatedGIF = true;
+            this.btnFactory.BackColor = System.Drawing.Color.Transparent;
+            this.btnFactory.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnFactory.BorderRadius = 15;
+            this.btnFactory.BorderThickness = 1;
+            this.btnFactory.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnFactory.CheckedState.FillColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnFactory.CheckedState.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFactory.CheckedState.ForeColor = System.Drawing.Color.Black;
+            this.btnFactory.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnFactory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnFactory.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnFactory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnFactory.FillColor = System.Drawing.Color.Indigo;
+            this.btnFactory.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFactory.ForeColor = System.Drawing.Color.White;
+            this.btnFactory.HoverState.FillColor = System.Drawing.Color.Lime;
+            this.btnFactory.HoverState.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFactory.HoverState.ForeColor = System.Drawing.Color.Black;
+            this.btnFactory.Image = ((System.Drawing.Image)(resources.GetObject("btnFactory.Image")));
+            this.btnFactory.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnFactory.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnFactory.Location = new System.Drawing.Point(27, 616);
+            this.btnFactory.Name = "btnFactory";
+            this.btnFactory.Size = new System.Drawing.Size(252, 50);
+            this.btnFactory.TabIndex = 6;
+            this.btnFactory.Text = "Factory Update";
+            this.btnFactory.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnFactory.Click += new System.EventHandler(this.btnFactory_Click);
+            // 
             // btnExport
             // 
             this.btnExport.Animated = true;
             this.btnExport.AnimatedGIF = true;
-            this.btnExport.BackColor = System.Drawing.Color.MidnightBlue;
+            this.btnExport.BackColor = System.Drawing.Color.Transparent;
             this.btnExport.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnExport.BorderRadius = 15;
             this.btnExport.BorderThickness = 1;
@@ -86,7 +128,7 @@
             this.btnExport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnExport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnExport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnExport.FillColor = System.Drawing.Color.MidnightBlue;
+            this.btnExport.FillColor = System.Drawing.Color.Indigo;
             this.btnExport.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExport.ForeColor = System.Drawing.Color.White;
             this.btnExport.HoverState.FillColor = System.Drawing.Color.Lime;
@@ -106,7 +148,7 @@
             // 
             this.btnSale.Animated = true;
             this.btnSale.AnimatedGIF = true;
-            this.btnSale.BackColor = System.Drawing.Color.MidnightBlue;
+            this.btnSale.BackColor = System.Drawing.Color.Transparent;
             this.btnSale.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnSale.BorderRadius = 15;
             this.btnSale.BorderThickness = 1;
@@ -118,7 +160,7 @@
             this.btnSale.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnSale.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnSale.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnSale.FillColor = System.Drawing.Color.MidnightBlue;
+            this.btnSale.FillColor = System.Drawing.Color.Indigo;
             this.btnSale.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSale.ForeColor = System.Drawing.Color.White;
             this.btnSale.HoverState.FillColor = System.Drawing.Color.Lime;
@@ -138,7 +180,7 @@
             // 
             this.btnLoadData.Animated = true;
             this.btnLoadData.AnimatedGIF = true;
-            this.btnLoadData.BackColor = System.Drawing.Color.MidnightBlue;
+            this.btnLoadData.BackColor = System.Drawing.Color.Transparent;
             this.btnLoadData.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnLoadData.BorderRadius = 15;
             this.btnLoadData.BorderThickness = 1;
@@ -150,7 +192,7 @@
             this.btnLoadData.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnLoadData.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnLoadData.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnLoadData.FillColor = System.Drawing.Color.MidnightBlue;
+            this.btnLoadData.FillColor = System.Drawing.Color.Indigo;
             this.btnLoadData.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadData.ForeColor = System.Drawing.Color.White;
             this.btnLoadData.HoverState.FillColor = System.Drawing.Color.Lime;
@@ -171,7 +213,7 @@
             // 
             this.btnProduction.Animated = true;
             this.btnProduction.AnimatedGIF = true;
-            this.btnProduction.BackColor = System.Drawing.Color.MidnightBlue;
+            this.btnProduction.BackColor = System.Drawing.Color.Transparent;
             this.btnProduction.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnProduction.BorderRadius = 15;
             this.btnProduction.BorderThickness = 1;
@@ -183,7 +225,7 @@
             this.btnProduction.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnProduction.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnProduction.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnProduction.FillColor = System.Drawing.Color.MidnightBlue;
+            this.btnProduction.FillColor = System.Drawing.Color.Indigo;
             this.btnProduction.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProduction.ForeColor = System.Drawing.Color.White;
             this.btnProduction.HoverState.FillColor = System.Drawing.Color.Lime;
@@ -203,7 +245,7 @@
             // 
             this.btnHome.Animated = true;
             this.btnHome.AnimatedGIF = true;
-            this.btnHome.BackColor = System.Drawing.Color.MidnightBlue;
+            this.btnHome.BackColor = System.Drawing.Color.Transparent;
             this.btnHome.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnHome.BorderRadius = 15;
             this.btnHome.BorderThickness = 1;
@@ -215,7 +257,7 @@
             this.btnHome.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnHome.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnHome.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnHome.FillColor = System.Drawing.Color.MidnightBlue;
+            this.btnHome.FillColor = System.Drawing.Color.Indigo;
             this.btnHome.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHome.ForeColor = System.Drawing.Color.White;
             this.btnHome.HoverState.FillColor = System.Drawing.Color.Lime;
@@ -230,6 +272,7 @@
             this.btnHome.TabIndex = 1;
             this.btnHome.Text = "H o m e";
             this.btnHome.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // pictureBox1
             // 
@@ -283,6 +326,7 @@
             this.TopHomePannel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TopHomePannel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.TopHomePannel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.TopHomePannel.Controls.Add(this.label1);
             this.TopHomePannel.Controls.Add(this.btnMini);
             this.TopHomePannel.Controls.Add(this.btnExit);
@@ -294,11 +338,13 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.label1.Font = new System.Drawing.Font("Nirmala UI", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(296, 30);
+            this.label1.Location = new System.Drawing.Point(329, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(319, 62);
             this.label1.TabIndex = 3;
@@ -316,7 +362,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.HomePnannel.AutoScroll = true;
             this.HomePnannel.BackColor = System.Drawing.Color.MidnightBlue;
+            this.HomePnannel.Controls.Add(this.uC_Factory3);
             this.HomePnannel.Controls.Add(this.uC_GetData1);
+            this.HomePnannel.Controls.Add(this.uC_Factory2);
+            this.HomePnannel.Controls.Add(this.uC_Factory1);
+            this.HomePnannel.Controls.Add(this.uC_Home1);
             this.HomePnannel.Location = new System.Drawing.Point(302, 140);
             this.HomePnannel.Name = "HomePnannel";
             this.HomePnannel.Size = new System.Drawing.Size(1048, 669);
@@ -328,13 +378,68 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.uC_GetData1.AutoScroll = true;
-            this.uC_GetData1.AutoSize = true;
-            this.uC_GetData1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.uC_GetData1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.uC_GetData1.BackColor = System.Drawing.Color.MidnightBlue;
+            this.uC_GetData1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uC_GetData1.BackgroundImage")));
+            this.uC_GetData1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.uC_GetData1.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uC_GetData1.Location = new System.Drawing.Point(0, 0);
             this.uC_GetData1.Name = "uC_GetData1";
             this.uC_GetData1.Size = new System.Drawing.Size(1048, 669);
-            this.uC_GetData1.TabIndex = 0;
+            this.uC_GetData1.TabIndex = 5;
+            // 
+            // uC_Factory2
+            // 
+            this.uC_Factory2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uC_Factory2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.uC_Factory2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uC_Factory2.BackgroundImage")));
+            this.uC_Factory2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.uC_Factory2.Location = new System.Drawing.Point(-3, -3);
+            this.uC_Factory2.Name = "uC_Factory2";
+            this.uC_Factory2.Size = new System.Drawing.Size(1058, 672);
+            this.uC_Factory2.TabIndex = 4;
+            // 
+            // uC_Factory1
+            // 
+            this.uC_Factory1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.uC_Factory1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uC_Factory1.BackgroundImage")));
+            this.uC_Factory1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.uC_Factory1.Location = new System.Drawing.Point(339, 69);
+            this.uC_Factory1.Name = "uC_Factory1";
+            this.uC_Factory1.Size = new System.Drawing.Size(8, 8);
+            this.uC_Factory1.TabIndex = 3;
+            // 
+            // uC_Home1
+            // 
+            this.uC_Home1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uC_Home1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uC_Home1.BackgroundImage")));
+            this.uC_Home1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.uC_Home1.Location = new System.Drawing.Point(0, 0);
+            this.uC_Home1.Name = "uC_Home1";
+            this.uC_Home1.Size = new System.Drawing.Size(1045, 669);
+            this.uC_Home1.TabIndex = 1;
+            // 
+            // ElipseHome
+            // 
+            this.ElipseHome.TargetControl = this.HomePnannel;
+            // 
+            // ElipseFactory
+            // 
+            this.ElipseFactory.TargetControl = this.HomePnannel;
+            // 
+            // uC_Factory3
+            // 
+            this.uC_Factory3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.uC_Factory3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uC_Factory3.BackgroundImage")));
+            this.uC_Factory3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.uC_Factory3.Location = new System.Drawing.Point(0, 0);
+            this.uC_Factory3.Name = "uC_Factory3";
+            this.uC_Factory3.Size = new System.Drawing.Size(1048, 669);
+            this.uC_Factory3.TabIndex = 6;
             // 
             // Form1
             // 
@@ -359,7 +464,6 @@
             this.TopHomePannel.ResumeLayout(false);
             this.TopHomePannel.PerformLayout();
             this.HomePnannel.ResumeLayout(false);
-            this.HomePnannel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -380,7 +484,14 @@
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
         private System.Windows.Forms.Panel HomePnannel;
+        private Guna.UI2.WinForms.Guna2Elipse ElipseHome;
+        private All_User_Controllers.UC_Home uC_Home1;
+        private Guna.UI2.WinForms.Guna2Button btnFactory;
+        private Guna.UI2.WinForms.Guna2Elipse ElipseFactory;
+        private All_User_Controllers.UC_Factory uC_Factory2;
+        private All_User_Controllers.UC_Factory uC_Factory1;
         private All_User_Controllers.UC_GetData uC_GetData1;
+        private All_User_Controllers.UC_Factory uC_Factory3;
     }
 }
 
