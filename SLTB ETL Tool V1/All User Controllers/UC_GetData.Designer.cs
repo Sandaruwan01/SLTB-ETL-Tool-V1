@@ -43,11 +43,13 @@
             this.ElipseGetData = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.getDataGrid = new System.Windows.Forms.DataGridView();
             this.btnSave = new Guna.UI2.WinForms.Guna2Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.dtFrom = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.dtTo = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.nullReportGrid = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.getDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nullReportGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -211,6 +213,7 @@
             this.btnReset.TabIndex = 9;
             this.btnReset.Text = "Reset";
             this.btnReset.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // label6
             // 
@@ -219,7 +222,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(808, 527);
+            this.label6.Location = new System.Drawing.Point(798, 527);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(99, 25);
             this.label6.TabIndex = 11;
@@ -232,7 +235,7 @@
             this.lblRowCount.BackColor = System.Drawing.Color.Transparent;
             this.lblRowCount.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRowCount.ForeColor = System.Drawing.Color.White;
-            this.lblRowCount.Location = new System.Drawing.Point(901, 527);
+            this.lblRowCount.Location = new System.Drawing.Point(905, 527);
             this.lblRowCount.Name = "lblRowCount";
             this.lblRowCount.Size = new System.Drawing.Size(22, 25);
             this.lblRowCount.TabIndex = 12;
@@ -289,34 +292,7 @@
             this.btnSave.TabIndex = 14;
             this.btnSave.Text = "Save To Local";
             this.btnSave.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(58, 532);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(153, 25);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Mean Of Data Set";
-            // 
-            // label8
-            // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label8.Location = new System.Drawing.Point(138, 644);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(726, 20);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "..............................Please Make Sure Factory Table Has Been Updated For" +
-    " Accurate Data Collection.................................";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // dtFrom
             // 
@@ -354,6 +330,49 @@
             this.dtTo.TabIndex = 18;
             this.dtTo.Value = new System.DateTime(2025, 7, 29, 14, 48, 58, 754);
             // 
+            // nullReportGrid
+            // 
+            this.nullReportGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.nullReportGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.nullReportGrid.BackgroundColor = System.Drawing.Color.MidnightBlue;
+            this.nullReportGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+            this.nullReportGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.nullReportGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.nullReportGrid.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.nullReportGrid.Location = new System.Drawing.Point(63, 527);
+            this.nullReportGrid.Name = "nullReportGrid";
+            this.nullReportGrid.RowHeadersWidth = 51;
+            this.nullReportGrid.RowTemplate.Height = 24;
+            this.nullReportGrid.Size = new System.Drawing.Size(279, 105);
+            this.nullReportGrid.TabIndex = 19;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(217, 637);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(656, 23);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "....................................... Fill All Null Values With Relevent KeyWor" +
+    "d ....................................... ";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(132, 502);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(132, 23);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Null Value Table";
+            // 
             // UC_GetData
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -361,10 +380,11 @@
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Controls.Add(this.dtTo);
-            this.Controls.Add(this.dtFrom);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.nullReportGrid);
+            this.Controls.Add(this.dtTo);
+            this.Controls.Add(this.dtFrom);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.getDataGrid);
             this.Controls.Add(this.lblRowCount);
@@ -381,6 +401,7 @@
             this.Name = "UC_GetData";
             this.Size = new System.Drawing.Size(1048, 669);
             ((System.ComponentModel.ISupportInitialize)(this.getDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nullReportGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -401,9 +422,10 @@
         private Guna.UI2.WinForms.Guna2Elipse ElipseGetData;
         private System.Windows.Forms.DataGridView getDataGrid;
         private Guna.UI2.WinForms.Guna2Button btnSave;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtTo;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtFrom;
+        private System.Windows.Forms.DataGridView nullReportGrid;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
