@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnPannel = new System.Windows.Forms.Panel();
-            this.btnFactory = new Guna.UI2.WinForms.Guna2Button();
             this.btnExport = new Guna.UI2.WinForms.Guna2Button();
             this.btnSale = new Guna.UI2.WinForms.Guna2Button();
             this.btnLoadData = new Guna.UI2.WinForms.Guna2Button();
@@ -46,12 +45,9 @@
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.HomePnannel = new System.Windows.Forms.Panel();
             this.uC_GetData1 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_GetData();
-            this.uC_Factory2 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_Factory();
-            this.uC_Factory1 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_Factory();
             this.uC_Home1 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_Home();
             this.ElipseHome = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.ElipseFactory = new Guna.UI2.WinForms.Guna2Elipse(this.components);
-            this.uC_Factory3 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_Factory();
             this.btnPannel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMini)).BeginInit();
@@ -65,9 +61,9 @@
             // 
             this.btnPannel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPannel.BackColor = System.Drawing.Color.Black;
+            this.btnPannel.BackColor = System.Drawing.Color.Indigo;
+            this.btnPannel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPannel.BackgroundImage")));
             this.btnPannel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPannel.Controls.Add(this.btnFactory);
             this.btnPannel.Controls.Add(this.btnExport);
             this.btnPannel.Controls.Add(this.btnSale);
             this.btnPannel.Controls.Add(this.btnLoadData);
@@ -79,39 +75,6 @@
             this.btnPannel.Size = new System.Drawing.Size(291, 803);
             this.btnPannel.TabIndex = 0;
             // 
-            // btnFactory
-            // 
-            this.btnFactory.Animated = true;
-            this.btnFactory.AnimatedGIF = true;
-            this.btnFactory.BackColor = System.Drawing.Color.Transparent;
-            this.btnFactory.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnFactory.BorderRadius = 15;
-            this.btnFactory.BorderThickness = 1;
-            this.btnFactory.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnFactory.CheckedState.FillColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnFactory.CheckedState.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFactory.CheckedState.ForeColor = System.Drawing.Color.Black;
-            this.btnFactory.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnFactory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnFactory.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnFactory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnFactory.FillColor = System.Drawing.Color.Indigo;
-            this.btnFactory.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFactory.ForeColor = System.Drawing.Color.White;
-            this.btnFactory.HoverState.FillColor = System.Drawing.Color.Lime;
-            this.btnFactory.HoverState.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFactory.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnFactory.Image = ((System.Drawing.Image)(resources.GetObject("btnFactory.Image")));
-            this.btnFactory.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnFactory.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnFactory.Location = new System.Drawing.Point(27, 616);
-            this.btnFactory.Name = "btnFactory";
-            this.btnFactory.Size = new System.Drawing.Size(252, 50);
-            this.btnFactory.TabIndex = 6;
-            this.btnFactory.Text = "Factory Update";
-            this.btnFactory.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.btnFactory.Click += new System.EventHandler(this.btnFactory_Click);
-            // 
             // btnExport
             // 
             this.btnExport.Animated = true;
@@ -119,7 +82,6 @@
             this.btnExport.BackColor = System.Drawing.Color.Transparent;
             this.btnExport.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnExport.BorderRadius = 15;
-            this.btnExport.BorderThickness = 1;
             this.btnExport.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
             this.btnExport.CheckedState.FillColor = System.Drawing.Color.DeepSkyBlue;
             this.btnExport.CheckedState.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -128,7 +90,7 @@
             this.btnExport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnExport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnExport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnExport.FillColor = System.Drawing.Color.Indigo;
+            this.btnExport.FillColor = System.Drawing.Color.Transparent;
             this.btnExport.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExport.ForeColor = System.Drawing.Color.White;
             this.btnExport.HoverState.FillColor = System.Drawing.Color.Lime;
@@ -151,7 +113,6 @@
             this.btnSale.BackColor = System.Drawing.Color.Transparent;
             this.btnSale.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnSale.BorderRadius = 15;
-            this.btnSale.BorderThickness = 1;
             this.btnSale.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
             this.btnSale.CheckedState.FillColor = System.Drawing.Color.DeepSkyBlue;
             this.btnSale.CheckedState.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -160,7 +121,7 @@
             this.btnSale.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnSale.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnSale.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnSale.FillColor = System.Drawing.Color.Indigo;
+            this.btnSale.FillColor = System.Drawing.Color.Transparent;
             this.btnSale.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSale.ForeColor = System.Drawing.Color.White;
             this.btnSale.HoverState.FillColor = System.Drawing.Color.Lime;
@@ -183,7 +144,6 @@
             this.btnLoadData.BackColor = System.Drawing.Color.Transparent;
             this.btnLoadData.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnLoadData.BorderRadius = 15;
-            this.btnLoadData.BorderThickness = 1;
             this.btnLoadData.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
             this.btnLoadData.CheckedState.FillColor = System.Drawing.Color.DeepSkyBlue;
             this.btnLoadData.CheckedState.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -192,7 +152,7 @@
             this.btnLoadData.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnLoadData.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnLoadData.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnLoadData.FillColor = System.Drawing.Color.Indigo;
+            this.btnLoadData.FillColor = System.Drawing.Color.Transparent;
             this.btnLoadData.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadData.ForeColor = System.Drawing.Color.White;
             this.btnLoadData.HoverState.FillColor = System.Drawing.Color.Lime;
@@ -216,7 +176,6 @@
             this.btnProduction.BackColor = System.Drawing.Color.Transparent;
             this.btnProduction.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnProduction.BorderRadius = 15;
-            this.btnProduction.BorderThickness = 1;
             this.btnProduction.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
             this.btnProduction.CheckedState.FillColor = System.Drawing.Color.DeepSkyBlue;
             this.btnProduction.CheckedState.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -225,7 +184,7 @@
             this.btnProduction.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnProduction.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnProduction.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnProduction.FillColor = System.Drawing.Color.Indigo;
+            this.btnProduction.FillColor = System.Drawing.Color.Transparent;
             this.btnProduction.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProduction.ForeColor = System.Drawing.Color.White;
             this.btnProduction.HoverState.FillColor = System.Drawing.Color.Lime;
@@ -248,7 +207,6 @@
             this.btnHome.BackColor = System.Drawing.Color.Transparent;
             this.btnHome.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnHome.BorderRadius = 15;
-            this.btnHome.BorderThickness = 1;
             this.btnHome.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
             this.btnHome.CheckedState.FillColor = System.Drawing.Color.DeepSkyBlue;
             this.btnHome.CheckedState.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -257,7 +215,7 @@
             this.btnHome.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnHome.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnHome.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnHome.FillColor = System.Drawing.Color.Indigo;
+            this.btnHome.FillColor = System.Drawing.Color.Transparent;
             this.btnHome.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHome.ForeColor = System.Drawing.Color.White;
             this.btnHome.HoverState.FillColor = System.Drawing.Color.Lime;
@@ -326,6 +284,7 @@
             this.TopHomePannel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TopHomePannel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.TopHomePannel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TopHomePannel.BackgroundImage")));
             this.TopHomePannel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.TopHomePannel.Controls.Add(this.label1);
             this.TopHomePannel.Controls.Add(this.btnMini);
@@ -362,10 +321,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.HomePnannel.AutoScroll = true;
             this.HomePnannel.BackColor = System.Drawing.Color.MidnightBlue;
-            this.HomePnannel.Controls.Add(this.uC_Factory3);
             this.HomePnannel.Controls.Add(this.uC_GetData1);
-            this.HomePnannel.Controls.Add(this.uC_Factory2);
-            this.HomePnannel.Controls.Add(this.uC_Factory1);
             this.HomePnannel.Controls.Add(this.uC_Home1);
             this.HomePnannel.Location = new System.Drawing.Point(302, 140);
             this.HomePnannel.Name = "HomePnannel";
@@ -386,30 +342,7 @@
             this.uC_GetData1.Location = new System.Drawing.Point(0, 0);
             this.uC_GetData1.Name = "uC_GetData1";
             this.uC_GetData1.Size = new System.Drawing.Size(1048, 669);
-            this.uC_GetData1.TabIndex = 5;
-            // 
-            // uC_Factory2
-            // 
-            this.uC_Factory2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uC_Factory2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.uC_Factory2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uC_Factory2.BackgroundImage")));
-            this.uC_Factory2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.uC_Factory2.Location = new System.Drawing.Point(-3, -3);
-            this.uC_Factory2.Name = "uC_Factory2";
-            this.uC_Factory2.Size = new System.Drawing.Size(1058, 672);
-            this.uC_Factory2.TabIndex = 4;
-            // 
-            // uC_Factory1
-            // 
-            this.uC_Factory1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.uC_Factory1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uC_Factory1.BackgroundImage")));
-            this.uC_Factory1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.uC_Factory1.Location = new System.Drawing.Point(339, 69);
-            this.uC_Factory1.Name = "uC_Factory1";
-            this.uC_Factory1.Size = new System.Drawing.Size(8, 8);
-            this.uC_Factory1.TabIndex = 3;
+            this.uC_GetData1.TabIndex = 4;
             // 
             // uC_Home1
             // 
@@ -430,16 +363,6 @@
             // ElipseFactory
             // 
             this.ElipseFactory.TargetControl = this.HomePnannel;
-            // 
-            // uC_Factory3
-            // 
-            this.uC_Factory3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.uC_Factory3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uC_Factory3.BackgroundImage")));
-            this.uC_Factory3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.uC_Factory3.Location = new System.Drawing.Point(0, 0);
-            this.uC_Factory3.Name = "uC_Factory3";
-            this.uC_Factory3.Size = new System.Drawing.Size(1048, 669);
-            this.uC_Factory3.TabIndex = 6;
             // 
             // Form1
             // 
@@ -486,12 +409,9 @@
         private System.Windows.Forms.Panel HomePnannel;
         private Guna.UI2.WinForms.Guna2Elipse ElipseHome;
         private All_User_Controllers.UC_Home uC_Home1;
-        private Guna.UI2.WinForms.Guna2Button btnFactory;
         private Guna.UI2.WinForms.Guna2Elipse ElipseFactory;
-        private All_User_Controllers.UC_Factory uC_Factory2;
-        private All_User_Controllers.UC_Factory uC_Factory1;
+       
         private All_User_Controllers.UC_GetData uC_GetData1;
-        private All_User_Controllers.UC_Factory uC_Factory3;
     }
 }
 
