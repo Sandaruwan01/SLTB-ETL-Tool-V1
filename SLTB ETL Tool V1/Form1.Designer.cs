@@ -44,10 +44,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.HomePnannel = new System.Windows.Forms.Panel();
+            this.uC_ExportData1 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_ExportData();
+            this.uC_GetSaleData1 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_GetSaleData();
             this.uC_GetData1 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_GetData();
             this.uC_Home1 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_Home();
             this.ElipseHome = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.ElipseFactory = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.SaleDataElips = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.ExportElipse = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.ProductionElipse = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.uC_Production1 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_Production();
             this.btnPannel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMini)).BeginInit();
@@ -82,6 +88,7 @@
             this.btnExport.BackColor = System.Drawing.Color.Transparent;
             this.btnExport.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnExport.BorderRadius = 15;
+            this.btnExport.BorderThickness = 1;
             this.btnExport.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
             this.btnExport.CheckedState.FillColor = System.Drawing.Color.DeepSkyBlue;
             this.btnExport.CheckedState.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -99,12 +106,13 @@
             this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
             this.btnExport.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnExport.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnExport.Location = new System.Drawing.Point(27, 544);
+            this.btnExport.Location = new System.Drawing.Point(27, 403);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(252, 50);
             this.btnExport.TabIndex = 5;
             this.btnExport.Text = "Export Data";
             this.btnExport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // btnSale
             // 
@@ -113,6 +121,7 @@
             this.btnSale.BackColor = System.Drawing.Color.Transparent;
             this.btnSale.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnSale.BorderRadius = 15;
+            this.btnSale.BorderThickness = 1;
             this.btnSale.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
             this.btnSale.CheckedState.FillColor = System.Drawing.Color.DeepSkyBlue;
             this.btnSale.CheckedState.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -130,12 +139,13 @@
             this.btnSale.Image = ((System.Drawing.Image)(resources.GetObject("btnSale.Image")));
             this.btnSale.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSale.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnSale.Location = new System.Drawing.Point(27, 469);
+            this.btnSale.Location = new System.Drawing.Point(27, 568);
             this.btnSale.Name = "btnSale";
             this.btnSale.Size = new System.Drawing.Size(252, 50);
             this.btnSale.TabIndex = 4;
             this.btnSale.Text = "Sales Data";
             this.btnSale.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnSale.Click += new System.EventHandler(this.btnSale_Click);
             // 
             // btnLoadData
             // 
@@ -144,6 +154,7 @@
             this.btnLoadData.BackColor = System.Drawing.Color.Transparent;
             this.btnLoadData.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnLoadData.BorderRadius = 15;
+            this.btnLoadData.BorderThickness = 1;
             this.btnLoadData.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
             this.btnLoadData.CheckedState.FillColor = System.Drawing.Color.DeepSkyBlue;
             this.btnLoadData.CheckedState.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -176,6 +187,7 @@
             this.btnProduction.BackColor = System.Drawing.Color.Transparent;
             this.btnProduction.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnProduction.BorderRadius = 15;
+            this.btnProduction.BorderThickness = 1;
             this.btnProduction.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
             this.btnProduction.CheckedState.FillColor = System.Drawing.Color.DeepSkyBlue;
             this.btnProduction.CheckedState.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -193,12 +205,13 @@
             this.btnProduction.Image = ((System.Drawing.Image)(resources.GetObject("btnProduction.Image")));
             this.btnProduction.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnProduction.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnProduction.Location = new System.Drawing.Point(27, 396);
+            this.btnProduction.Location = new System.Drawing.Point(27, 485);
             this.btnProduction.Name = "btnProduction";
             this.btnProduction.Size = new System.Drawing.Size(252, 50);
             this.btnProduction.TabIndex = 2;
             this.btnProduction.Text = "Production Data";
             this.btnProduction.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnProduction.Click += new System.EventHandler(this.btnProduction_Click);
             // 
             // btnHome
             // 
@@ -207,6 +220,7 @@
             this.btnHome.BackColor = System.Drawing.Color.Transparent;
             this.btnHome.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnHome.BorderRadius = 15;
+            this.btnHome.BorderThickness = 1;
             this.btnHome.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
             this.btnHome.CheckedState.FillColor = System.Drawing.Color.DeepSkyBlue;
             this.btnHome.CheckedState.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -321,12 +335,40 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.HomePnannel.AutoScroll = true;
             this.HomePnannel.BackColor = System.Drawing.Color.MidnightBlue;
+            this.HomePnannel.Controls.Add(this.uC_Production1);
+            this.HomePnannel.Controls.Add(this.uC_ExportData1);
+            this.HomePnannel.Controls.Add(this.uC_GetSaleData1);
             this.HomePnannel.Controls.Add(this.uC_GetData1);
             this.HomePnannel.Controls.Add(this.uC_Home1);
             this.HomePnannel.Location = new System.Drawing.Point(302, 140);
             this.HomePnannel.Name = "HomePnannel";
             this.HomePnannel.Size = new System.Drawing.Size(1048, 669);
             this.HomePnannel.TabIndex = 1;
+            // 
+            // uC_ExportData1
+            // 
+            this.uC_ExportData1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uC_ExportData1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.uC_ExportData1.BackColor = System.Drawing.Color.Black;
+            this.uC_ExportData1.Location = new System.Drawing.Point(0, 0);
+            this.uC_ExportData1.Name = "uC_ExportData1";
+            this.uC_ExportData1.Size = new System.Drawing.Size(1048, 669);
+            this.uC_ExportData1.TabIndex = 6;
+            // 
+            // uC_GetSaleData1
+            // 
+            this.uC_GetSaleData1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uC_GetSaleData1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.uC_GetSaleData1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.uC_GetSaleData1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.uC_GetSaleData1.Location = new System.Drawing.Point(-3, 0);
+            this.uC_GetSaleData1.Name = "uC_GetSaleData1";
+            this.uC_GetSaleData1.Size = new System.Drawing.Size(1048, 669);
+            this.uC_GetSaleData1.TabIndex = 5;
             // 
             // uC_GetData1
             // 
@@ -363,6 +405,30 @@
             // ElipseFactory
             // 
             this.ElipseFactory.TargetControl = this.HomePnannel;
+            // 
+            // SaleDataElips
+            // 
+            this.SaleDataElips.TargetControl = this.HomePnannel;
+            // 
+            // ExportElipse
+            // 
+            this.ExportElipse.TargetControl = this.HomePnannel;
+            // 
+            // ProductionElipse
+            // 
+            this.ProductionElipse.TargetControl = this.HomePnannel;
+            // 
+            // uC_Production1
+            // 
+            this.uC_Production1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uC_Production1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.uC_Production1.BackColor = System.Drawing.Color.Black;
+            this.uC_Production1.Location = new System.Drawing.Point(0, 0);
+            this.uC_Production1.Name = "uC_Production1";
+            this.uC_Production1.Size = new System.Drawing.Size(1048, 669);
+            this.uC_Production1.TabIndex = 7;
             // 
             // Form1
             // 
@@ -412,6 +478,12 @@
         private Guna.UI2.WinForms.Guna2Elipse ElipseFactory;
        
         private All_User_Controllers.UC_GetData uC_GetData1;
+        private Guna.UI2.WinForms.Guna2Elipse SaleDataElips;
+        private All_User_Controllers.UC_GetSaleData uC_GetSaleData1;
+        private Guna.UI2.WinForms.Guna2Elipse ExportElipse;
+        private All_User_Controllers.UC_ExportData uC_ExportData1;
+        private Guna.UI2.WinForms.Guna2Elipse ProductionElipse;
+        private All_User_Controllers.UC_Production uC_Production1;
     }
 }
 

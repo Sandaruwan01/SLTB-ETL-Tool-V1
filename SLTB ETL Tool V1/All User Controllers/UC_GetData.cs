@@ -53,6 +53,7 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
             }
         }
 
+        //Method to get data from stored procedure
         private DataTable GetDataFromSP(string spName, int year, string fromDate, string toDate)
         {
             using (SqlConnection conn = new SqlConnection("Server=192.168.15.7;Database=SLTB;User Id=sa;Password=sa@123;TrustServerCertificate=True;"))
@@ -73,8 +74,8 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
         //Method to load Sale Data
         public void LoadSaleData()
            {
-               DateTime startDate = dtFrom.Value.Date;
-               DateTime endDate = dtTo.Value.Date;
+               DateTime startDate = dtSaleFrom.Value.Date;
+               DateTime endDate = dtSaleTo.Value.Date;
                int year = endDate.Year;
 
                DataTable auctionData = GetDataFromSP("spGetRawDataAuctionSaleWithRefuse_v3", year, startDate.ToString("yyyy-MM-dd"), endDate.ToString("yyyy-MM-dd"));
@@ -281,8 +282,8 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
             getDataGrid.DataSource = null;
             nullReportGrid.DataSource = null;
             lblRowCount.Text = "0";
-            dtFrom.Value = DateTime.Now;
-            dtTo.Value = DateTime.Now;
+            dtSaleFrom.Value = DateTime.Now;
+            dtSaleTo.Value = DateTime.Now;
             dataTypeBox.SelectedIndex = -1; // Reset the dropdown selection
 
         }

@@ -20,6 +20,10 @@ namespace SLTB_ETL_Tool_V1
             this.uC_Home1.Visible = true;
             this.uC_Home1.BringToFront();
             this.uC_GetData1.Visible = false;
+            this.uC_GetSaleData1.Visible = false;
+            this.uC_ExportData1.Visible = false;
+            this.uC_Production1.Visible = false;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -112,6 +116,22 @@ namespace SLTB_ETL_Tool_V1
             this.uC_Home1.BringToFront();
         }
 
-       
+        private void btnSale_Click(object sender, EventArgs e)
+        {
+            this.uC_GetSaleData1.Visible = true;
+            this.uC_GetSaleData1.BringToFront();
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            this.uC_ExportData1.Visible = true;
+            this.uC_ExportData1.BringToFront();
+        }
+
+        private void btnProduction_Click(object sender, EventArgs e)
+        {
+            this.uC_Production1.Visible = true;
+            this.uC_Production1.BringToFront();
+        }
     }
 }
