@@ -311,6 +311,7 @@
             this.Controls.Add(this.label2);
             this.Name = "UC_ExportData";
             this.Size = new System.Drawing.Size(1048, 669);
+            this.Load += new System.EventHandler(this.UC_ExportData_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ExportDataGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

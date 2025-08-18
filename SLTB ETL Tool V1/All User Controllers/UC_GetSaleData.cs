@@ -51,7 +51,9 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
                 
                 SaleDataGrid.DataSource = dt;
 
-                
+                lblSaleRowCount.Text = $" {SaleDataGrid.Rows.Count.ToString("N0")}";
+
+                SaleDataGrid.AllowUserToAddRows = false;
             }
             catch (Exception ex)
             {

@@ -16,5 +16,10 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
         {
             InitializeComponent();
         }
+
+        private void UC_ExportData_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
