@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,13 +44,13 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
 
             if (dataTypeBox.SelectedItem.ToString() == "Production Data")
             {
-                // Call This to fetch Customer Data
-                LoadproductionData();
+                // Call This Method to fetch Production Data
+                LoadProductionData();
             }
             if (dataTypeBox.SelectedItem.ToString() == "Export Data")
             {
-                // Call This Method to fetch Customer Data
-                LoadCustomerData();
+                // Call This Method to fetch Export Data
+                LoadExportData();
             }
         }
 
@@ -74,8 +75,8 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
         //Method to load Sale Data
         public void LoadSaleData()
            {
-               DateTime startDate = dtSaleFrom.Value.Date;
-               DateTime endDate = dtSaleTo.Value.Date;
+               DateTime startDate = dtFrom.Value.Date;
+               DateTime endDate = dtTo.Value.Date;
                int year = endDate.Year;
 
                DataTable auctionData = GetDataFromSP("spGetRawDataAuctionSaleWithRefuse_v3", year, startDate.ToString("yyyy-MM-dd"), endDate.ToString("yyyy-MM-dd"));
@@ -254,27 +255,256 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
 
             nullReportGrid.DataSource = reportTable;
 
-            lblRowCount.Text = $" {getDataGrid.Rows.Count}";
+            lblRowCount.Text = $" {getDataGrid.Rows.Count.ToString("N0")}";
 
             getDataGrid.AllowUserToAddRows = false;
-        } 
-
-        
-
-       
-
-        public void LoadproductionData()
-        {
-            // Logic to load production data from the database or any source
-            // This is a placeholder for actual data loading logic
-            MessageBox.Show("Production Data Loaded Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        public void LoadCustomerData()
+
+        //Method to fetch Production Data
+        public void LoadProductionData()
         {
-            // Logic to load customer data from the database or any source
-            // This is a placeholder for actual data loading logic
-            MessageBox.Show("Customer Data Loaded Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DateTime fromDate = dtFrom.Value;
+            DateTime toDate = dtTo.Value;
+
+            string connectionString = "Server=192.168.15.7;Database=SLTB;User Id=sa;Password=sa@123;TrustServerCertificate=True;";
+
+            string query = @"
+            SELECT 
+            F.Factory AS FactoryCode,
+            F.Name AS FactoryName,
+            E.Name AS Elevation,
+            SE.Name AS SubElevation,
+            R.Name AS Region,
+            MP.ProdYear,
+            MP.ProdMonth,
+            P.Code AS ProcessingMethod,
+            MP.ManOwnLeaf,
+            MP.ManBoughtLeaf,
+            MP.ManOtherEstate,
+            MP.TotalProduction,
+            MR.DuringTheMonth AS DuringTheMonth
+            FROM MonthlyProduction MP
+            INNER JOIN MonthlyRefuseTea MR ON MP.MonthlyProductionID = MR.MonthlyProductionID
+            INNER JOIN Factory F ON F.FactoryID = MP.FactoryID
+            INNER JOIN Elevation E ON E.ElevationId = F.ElevationId
+            INNER JOIN SubElevation SE ON SE.SubElevationId = F.SubElevationId
+            INNER JOIN ProcessingMethod P ON P.ProcessingMethodID = MP.ProcessingMethodID
+            INNER JOIN ATCRegion R ON R.ATCRegionID = F.ATCRegionID
+             WHERE 
+            CAST(DATEFROMPARTS(MP.ProdYear, MP.ProdMonth, 1) AS DATE) 
+            BETWEEN @FromDate AND @ToDate;";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@FromDate", fromDate.Date);
+                    cmd.Parameters.AddWithValue("@ToDate", toDate.Date);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    getDataGrid.DataSource = dt;
+
+                    // ---- Null detection & reporting block ----
+                    Dictionary<string, int> nullCounts = new Dictionary<string, int>();
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        nullCounts[col.ColumnName] = 0;
+                    }
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        foreach (DataColumn col in dt.Columns)
+                        {
+                            if (row.IsNull(col))
+                            {
+                                nullCounts[col.ColumnName]++;
+                            }
+                        }
+                    }
+
+                    foreach (DataGridViewRow row in getDataGrid.Rows)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            if (cell.Value == DBNull.Value || string.IsNullOrEmpty(cell.Value?.ToString()))
+                            {
+                                cell.Style.BackColor = Color.Red;
+                                cell.Style.ForeColor = Color.White;
+                                cell.ReadOnly = false; // Let user edit only null fields
+                            }
+                            else
+                            {
+                                cell.ReadOnly = true; // Optional: make valid cells read-only
+                            }
+                        }
+                    }
+
+                    //show in a DataGridView report
+                    DataTable reportTable = new DataTable();
+                    reportTable.Columns.Add("Column");
+                    reportTable.Columns.Add("RowNumber");
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        foreach (DataColumn col in dt.Columns)
+                        {
+                            if (col.ColumnName == "RowNumber") continue; // skip self
+
+                            if (row.IsNull(col))
+                            {
+                                reportTable.Rows.Add(col.ColumnName, row["RowNumber"]);
+                            }
+                        }
+                    }
+
+
+                    nullReportGrid.DataSource = reportTable;
+
+                    lblRowCount.Text = $" {getDataGrid.Rows.Count}";
+
+                    getDataGrid.AllowUserToAddRows = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading data: " + ex.Message);
+            }
+        }
+
+
+
+
+        public void LoadExportData()
+        {
+            DateTime fromDate = dtFrom.Value;
+            DateTime toDate = dtTo.Value;
+
+            string connectionString = "Server=192.168.15.7;Database=SLTB;User Id=sa;Password=sa@123;TrustServerCertificate=True;";
+
+            string query = @" SELECT Distinct
+                            D.Name AS Country,
+                            s.ApplicantName,
+                            MC.CusYear,
+                            MC.CusMonth,
+                            CASE WHEN IsExport = 1 THEN 'Export' ELSE 'ReExport' END AS ExportType,
+                            HSP.Name AS Process,
+                            HPT.Name AS Package,
+                            Cod.Code AS HSCode,
+                            MC.CusQty AS Qty,
+                            MC.CusValue AS Value,
+                            E.ShipmentDate,
+                            E.Vessel,
+                            E.DeliveryTerms,
+                            E.ConsigneeName
+                            FROM MonthlyCustoms MC
+                            INNER JOIN HSCode Cod
+                                ON MC.HSCodeID = Cod.HSCodeID
+                            INNER JOIN (SELECT * FROM HSCategory WHERE HSProcessID IS NOT NULL) HSC
+                                ON Cod.HSCodeID = HSC.HSCodeID
+                            INNER JOIN HSProcess HSP
+                                ON HSC.HSProcessID = HSP.HSProcessID
+                            INNER JOIN HSPackageType HPT
+                                ON HSC.HSPackingID = HPT.HSPackageTypeID
+                            INNER JOIN Destination D
+                                ON D.DestinationID = MC.DestinationID
+                            LEFT JOIN (
+                                SELECT s.ApplicantName, e.ExporterID
+                                FROM SLTBClient s
+                                INNER JOIN Exporter e ON s.SLTBClientID = e.SLTBClientID
+                                ) s ON s.ExporterID = MC.ExporterID
+                                INNER JOIN Export E
+                                ON E.ExporterID = MC.ExporterID
+                                AND E.DestinationID = MC.DestinationID
+                                AND MC.CusYear = YEAR(E.ShipmentDate)
+                                AND MC.CusMonth = MONTH(E.ShipmentDate)
+                                WHERE
+                                 E.ShipmentDate >= @FromDate 
+                                 AND E.ShipmentDate <= @ToDate 
+                                 AND HPT.HSPackageTypeID <> 7
+                                    ORDER BY ShipmentDate;";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@FromDate", fromDate.Date);
+                    cmd.Parameters.AddWithValue("@ToDate", toDate.Date);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    getDataGrid.DataSource = dt;
+
+                    // ---- Null detection & reporting block ----
+                    Dictionary<string, int> nullCounts = new Dictionary<string, int>();
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        nullCounts[col.ColumnName] = 0;
+                    }
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        foreach (DataColumn col in dt.Columns)
+                        {
+                            if (row.IsNull(col))
+                            {
+                                nullCounts[col.ColumnName]++;
+                            }
+                        }
+                    }
+
+                    foreach (DataGridViewRow row in getDataGrid.Rows)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            if (cell.Value == DBNull.Value || string.IsNullOrEmpty(cell.Value?.ToString()))
+                            {
+                                cell.Style.BackColor = Color.Red;
+                                cell.Style.ForeColor = Color.White;
+                                cell.ReadOnly = false; // Let user edit only null fields
+                            }
+                            else
+                            {
+                                cell.ReadOnly = true; // Optional: make valid cells read-only
+                            }
+                        }
+                    }
+
+                    //show in a DataGridView report
+                    DataTable reportTable = new DataTable();
+                    reportTable.Columns.Add("Column");
+                    reportTable.Columns.Add("RowNumber");
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        foreach (DataColumn col in dt.Columns)
+                        {
+                            if (col.ColumnName == "RowNumber") continue; // skip self
+
+                            if (row.IsNull(col))
+                            {
+                                reportTable.Rows.Add(col.ColumnName, row["RowNumber"]);
+                            }
+                        }
+                    }
+
+                    nullReportGrid.DataSource = reportTable;
+
+                    lblRowCount.Text = $" {getDataGrid.Rows.Count}";
+                    getDataGrid.AllowUserToAddRows = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading data: " + ex.Message);
+            }
+
+
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -282,16 +512,38 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
             getDataGrid.DataSource = null;
             nullReportGrid.DataSource = null;
             lblRowCount.Text = "0";
-            dtSaleFrom.Value = DateTime.Now;
-            dtSaleTo.Value = DateTime.Now;
+            dtFrom.Value = DateTime.Now;
+            dtTo.Value = DateTime.Now;
             dataTypeBox.SelectedIndex = -1; // Reset the dropdown selection
 
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (dataTypeBox.SelectedItem.ToString() == "Sales Data")
+            {
+                //Call This Method to Save Sale Data To Local Database
+                SaveSaleData();
+            }
+
+            if (dataTypeBox.SelectedItem.ToString() == "Production Data")
+            {
+                // Call This Method to Save Production Data
+                SaveProductionData();
+            }
+            if (dataTypeBox.SelectedItem.ToString() == "Export Data")
+            {
+                // Call This Method to Save Export Data
+                SaveExportData();
+            }
+            
+
+        }
+
+        private void SaveSaleData()
+        {
             // Ask for confirmation before saving
-            DialogResult result = MessageBox.Show("Are you sure you want to save the data to the database?", 
+            DialogResult result = MessageBox.Show("Are you sure you want to save the data to the database?",
                 "Confirm Save", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result != DialogResult.Yes)
@@ -362,7 +614,7 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
                         cmd.Parameters["@NetWeight"].Value = row.Cells["NetWeight"].Value;
                         cmd.Parameters["@Price"].Value = row.Cells["Price"].Value;
                         cmd.Parameters["@NetValue"].Value = row.Cells["NetValue"].Value;
-                        
+
                         string saleDateStr = row.Cells["Saledate"].Value?.ToString();
                         DateTime saleDate;
                         if (!DateTime.TryParse(saleDateStr, out saleDate))
@@ -371,7 +623,7 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
                             continue;
                         }
                         cmd.Parameters["@SaleDate"].Value = saleDate;
-                        
+
                         cmd.Parameters["@Broker"].Value = row.Cells["Broker"].Value;
                         cmd.Parameters["@LotNo"].Value = row.Cells["LotNo"].Value;
                         cmd.Parameters["@InvoiceNo"].Value = row.Cells["InvoiceNo"].Value;
@@ -388,8 +640,159 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
 
             MessageBox.Show($"Save completed!\n\nInserted: {insertedCount} rows\nIgnored (duplicates): {ignoredCount} rows",
                 "Operation Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void SaveProductionData()
+        {
+            // Ask for confirmation before saving
+            DialogResult result = MessageBox.Show("Are you sure you want to save the data to the database?",
+                "Confirm Save", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result != DialogResult.Yes)
+                return; // Cancel the operation
+
+            string connStr = "Data Source=SLTBDataV1.db;Version=3;";
+            int insertedCount = 0;
+            int totalRows = 0;
+
+            using (SQLiteConnection conn = new SQLiteConnection(connStr))
+            {
+                conn.Open();
+                using (SQLiteTransaction transaction = conn.BeginTransaction())
+                using (SQLiteCommand cmd = new SQLiteCommand(conn))
+                {
+                    cmd.CommandText = @"INSERT OR IGNORE INTO ProductionDataV1 
+        (FactoryCode,FactoryName,Elevation,SubElevation,Region,ProdYear,
+            ProdMonth, ProcessingMethod,ManOwnLeaf, ManBoughtLeaf, ManOtherEstate,
+            TotalProduction,DuringTheMonth ) 
+        VALUES (@FactoryCode, @FactoryName, @Elevation, @SubElevation, @Region, @ProdYear, 
+                @ProdMonth, @ProcessingMethod, @ManOwnLeaf, @ManBoughtLeaf, @ManOtherEstate, 
+                @TotalProduction, @DuringTheMonth);";
+
+                    // Add parameters once
+                    cmd.Parameters.Add("@FactoryCode", DbType.String);
+                    cmd.Parameters.Add("@FactoryName", DbType.String);
+                    cmd.Parameters.Add("@Elevation", DbType.String);
+                    cmd.Parameters.Add("@SubElevation", DbType.String);
+                    cmd.Parameters.Add("@Region", DbType.String);
+                    cmd.Parameters.Add("@ProdYear", DbType.String);
+                    cmd.Parameters.Add("@ProdMonth", DbType.String);
+                    cmd.Parameters.Add("@ProcessingMethod", DbType.String);
+                    cmd.Parameters.Add("@ManOwnLeaf", DbType.Double);
+                    cmd.Parameters.Add("@ManBoughtLeaf", DbType.Double);
+                    cmd.Parameters.Add("@ManOtherEstate", DbType.Double);
+                    cmd.Parameters.Add("@TotalProduction", DbType.Double);
+                    cmd.Parameters.Add("@DuringTheMonth", DbType.Double);
+                    
+
+                    foreach (DataGridViewRow row in getDataGrid.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+
+                        totalRows++;
+
+                        
+                        cmd.Parameters["@FactoryCode"].Value = row.Cells["FactoryCode"].Value;
+                        cmd.Parameters["@FactoryName"].Value = row.Cells["FactoryName"].Value;
+                        cmd.Parameters["@Elevation"].Value = row.Cells["Elevation"].Value;
+                        cmd.Parameters["@SubElevation"].Value = row.Cells["Subelevation"].Value;
+                        cmd.Parameters["@Region"].Value = row.Cells["Region"].Value;
+                        cmd.Parameters["@ProdYear"].Value = row.Cells["ProdYear"].Value;
+                        cmd.Parameters["@ProdMonth"].Value = row.Cells["ProdMonth"].Value;
+                        cmd.Parameters["@ProcessingMethod"].Value = row.Cells["ProcessingMethod"].Value;
+                        cmd.Parameters["@ManOwnLeaf"].Value = row.Cells["ManOwnLeaf"].Value;
+                        cmd.Parameters["@ManBoughtLeaf"].Value = row.Cells["ManBoughtLeaf"].Value;
+                        cmd.Parameters["@ManOtherEstate"].Value = row.Cells["ManOtherEstate"].Value;
+                        cmd.Parameters["@TotalProduction"].Value = row.Cells["TotalProduction"].Value;
+                        cmd.Parameters["@DuringTheMonth"].Value = row.Cells["DuringTheMonth"].Value;
+
+                        insertedCount += cmd.ExecuteNonQuery(); // 1 = inserted, 0 = ignored
+                    }
+
+                  
+                }
+            }
+
+            int ignoredCount = totalRows - insertedCount;
+
+            MessageBox.Show($"Save completed!\n\nInserted: {insertedCount} rows\nIgnored (duplicates): {ignoredCount} rows",
+                "Operation Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
- 
+
+        private void SaveExportData()
+        {
+            // Ask for confirmation before saving
+            DialogResult result = MessageBox.Show("Are you sure you want to save the data to the database?",
+                "Confirm Save", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result != DialogResult.Yes)
+                return; // Cancel the operation
+
+            string connStr = "Data Source=SLTBDataV1.db;Version=3;";
+            int insertedCount = 0;
+            int totalRows = 0;
+
+            using (SQLiteConnection conn = new SQLiteConnection(connStr))
+            {
+                conn.Open();
+                using (SQLiteTransaction transaction = conn.BeginTransaction())
+                using (SQLiteCommand cmd = new SQLiteCommand(conn))
+                {
+                    cmd.CommandText = @"INSERT OR IGNORE INTO ExportDataV1 
+        (Country,ApplicantName,ExportType,Process,Package,HSCode,Qty,Value,ShipmentDate,Vessel,
+        Deliveryterms,ConsigneeName ) 
+        VALUES (@Country, @ApplicantName, @ExportType, @Process, @Package, @HSCode, @Qty, @Value,
+        @ShipmentDate, @Vessel, @DeliveryTerms, @ConsigneeName);";
+
+                    // Add parameters once
+                    cmd.Parameters.Add("@Country", DbType.String);
+                    cmd.Parameters.Add("@ApplicantName", DbType.String);
+                    cmd.Parameters.Add("@ExportType", DbType.String);
+                    cmd.Parameters.Add("@Process", DbType.String);
+                    cmd.Parameters.Add("@Package", DbType.String);
+                    cmd.Parameters.Add("@HSCode", DbType.String);
+                    cmd.Parameters.Add("@Qty", DbType.Double);
+                    cmd.Parameters.Add("@Value", DbType.Double);
+                    cmd.Parameters.Add("@ShipmentDate", DbType.Date);
+                    cmd.Parameters.Add("@Vessel", DbType.String);
+                    cmd.Parameters.Add("@DeliveryTerms", DbType.String);
+                    cmd.Parameters.Add("@ConsigneeName", DbType.String);
+
+
+                    foreach (DataGridViewRow row in getDataGrid.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+
+                        totalRows++;
+
+
+                        cmd.Parameters["@Country"].Value = row.Cells["Country"].Value;
+                        cmd.Parameters["@ApplicantName"].Value = row.Cells["ApplicantName"].Value;
+                        cmd.Parameters["@ExportType"].Value = row.Cells["ExportType"].Value;
+                        cmd.Parameters["@Process"].Value = row.Cells["Process"].Value;
+                        cmd.Parameters["@Package"].Value = row.Cells["Package"].Value;
+                        cmd.Parameters["@HSCode"].Value = row.Cells["HSCode"].Value;
+                        cmd.Parameters["@Qty"].Value = row.Cells["Qty"].Value;
+                        cmd.Parameters["@Value"].Value = row.Cells["Value"].Value;
+                        cmd.Parameters["@ShipmentDate"].Value = row.Cells["ShipmentDate"].Value;
+                        cmd.Parameters["@Vessel"].Value = row.Cells["Vessel"].Value;
+                        cmd.Parameters["@DeliveryTerms"].Value = row.Cells["DeliveryTerms"].Value;
+                        cmd.Parameters["@ConsigneeName"].Value = row.Cells["ConsigneeName"].Value;
+                       
+
+                        insertedCount += cmd.ExecuteNonQuery(); // 1 = inserted, 0 = ignored
+                    }
+
+
+                }
+            }
+
+            int ignoredCount = totalRows - insertedCount;
+
+            MessageBox.Show($"Save completed!\n\nInserted: {insertedCount} rows\nIgnored (duplicates): {ignoredCount} rows",
+                "Operation Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
     }
 }

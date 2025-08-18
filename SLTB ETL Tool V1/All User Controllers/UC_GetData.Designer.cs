@@ -43,8 +43,8 @@
             this.ElipseGetData = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.getDataGrid = new System.Windows.Forms.DataGridView();
             this.btnSave = new Guna.UI2.WinForms.Guna2Button();
-            this.dtSaleFrom = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.dtSaleTo = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.dtFrom = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.dtTo = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.nullReportGrid = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -294,41 +294,41 @@
             this.btnSave.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // dtSaleFrom
+            // dtFrom
             // 
-            this.dtSaleFrom.BackColor = System.Drawing.Color.DodgerBlue;
-            this.dtSaleFrom.Checked = true;
-            this.dtSaleFrom.CheckedState.FillColor = System.Drawing.Color.DodgerBlue;
-            this.dtSaleFrom.CheckedState.ForeColor = System.Drawing.Color.White;
-            this.dtSaleFrom.FillColor = System.Drawing.Color.DodgerBlue;
-            this.dtSaleFrom.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtSaleFrom.ForeColor = System.Drawing.Color.White;
-            this.dtSaleFrom.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtSaleFrom.Location = new System.Drawing.Point(122, 109);
-            this.dtSaleFrom.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtSaleFrom.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtSaleFrom.Name = "dtSaleFrom";
-            this.dtSaleFrom.Size = new System.Drawing.Size(305, 36);
-            this.dtSaleFrom.TabIndex = 17;
-            this.dtSaleFrom.Value = new System.DateTime(2025, 7, 29, 14, 48, 58, 754);
+            this.dtFrom.BackColor = System.Drawing.Color.DodgerBlue;
+            this.dtFrom.Checked = true;
+            this.dtFrom.CheckedState.FillColor = System.Drawing.Color.DodgerBlue;
+            this.dtFrom.CheckedState.ForeColor = System.Drawing.Color.White;
+            this.dtFrom.FillColor = System.Drawing.Color.DodgerBlue;
+            this.dtFrom.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtFrom.ForeColor = System.Drawing.Color.White;
+            this.dtFrom.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtFrom.Location = new System.Drawing.Point(122, 109);
+            this.dtFrom.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtFrom.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtFrom.Name = "dtFrom";
+            this.dtFrom.Size = new System.Drawing.Size(305, 36);
+            this.dtFrom.TabIndex = 17;
+            this.dtFrom.Value = new System.DateTime(2025, 7, 29, 14, 48, 58, 754);
             // 
-            // dtSaleTo
+            // dtTo
             // 
-            this.dtSaleTo.BackColor = System.Drawing.Color.DodgerBlue;
-            this.dtSaleTo.Checked = true;
-            this.dtSaleTo.CheckedState.FillColor = System.Drawing.Color.DodgerBlue;
-            this.dtSaleTo.CheckedState.ForeColor = System.Drawing.Color.White;
-            this.dtSaleTo.FillColor = System.Drawing.Color.DodgerBlue;
-            this.dtSaleTo.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtSaleTo.ForeColor = System.Drawing.Color.White;
-            this.dtSaleTo.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtSaleTo.Location = new System.Drawing.Point(122, 154);
-            this.dtSaleTo.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtSaleTo.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtSaleTo.Name = "dtSaleTo";
-            this.dtSaleTo.Size = new System.Drawing.Size(305, 36);
-            this.dtSaleTo.TabIndex = 18;
-            this.dtSaleTo.Value = new System.DateTime(2025, 7, 29, 14, 48, 58, 754);
+            this.dtTo.BackColor = System.Drawing.Color.DodgerBlue;
+            this.dtTo.Checked = true;
+            this.dtTo.CheckedState.FillColor = System.Drawing.Color.DodgerBlue;
+            this.dtTo.CheckedState.ForeColor = System.Drawing.Color.White;
+            this.dtTo.FillColor = System.Drawing.Color.DodgerBlue;
+            this.dtTo.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtTo.ForeColor = System.Drawing.Color.White;
+            this.dtTo.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtTo.Location = new System.Drawing.Point(122, 154);
+            this.dtTo.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtTo.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtTo.Name = "dtTo";
+            this.dtTo.Size = new System.Drawing.Size(305, 36);
+            this.dtTo.TabIndex = 18;
+            this.dtTo.Value = new System.DateTime(2025, 7, 29, 14, 48, 58, 754);
             // 
             // nullReportGrid
             // 
@@ -383,8 +383,8 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.nullReportGrid);
-            this.Controls.Add(this.dtSaleTo);
-            this.Controls.Add(this.dtSaleFrom);
+            this.Controls.Add(this.dtTo);
+            this.Controls.Add(this.dtFrom);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.getDataGrid);
             this.Controls.Add(this.lblRowCount);
@@ -422,8 +422,8 @@
         private Guna.UI2.WinForms.Guna2Elipse ElipseGetData;
         private System.Windows.Forms.DataGridView getDataGrid;
         private Guna.UI2.WinForms.Guna2Button btnSave;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtSaleTo;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtSaleFrom;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtTo;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtFrom;
         private System.Windows.Forms.DataGridView nullReportGrid;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;

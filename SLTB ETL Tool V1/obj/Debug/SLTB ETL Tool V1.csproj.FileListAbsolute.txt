@@ -66,3 +66,4 @@ C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1 -base\SLTB ETL Tool V1\bin\Deb
 C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1 -base\SLTB ETL Tool V1\obj\Debug\SLTB_ETL_Tool_V1.All_User_Controllers.UC_GetSaleData.resources
 C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1 -base\SLTB ETL Tool V1\obj\Debug\SLTB_ETL_Tool_V1.All_User_Controllers.UC_ExportData.resources
 C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1 -base\SLTB ETL Tool V1\obj\Debug\SLTB_ETL_Tool_V1.All_User_Controllers.UC_Production.resources
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1 -base\SLTB ETL Tool V1\bin\Debug\SQLitePCLRaw.core.dll

@@ -311,6 +311,7 @@
             this.Controls.Add(this.label2);
             this.Name = "UC_Production";
             this.Size = new System.Drawing.Size(1048, 669);
+            this.Load += new System.EventHandler(this.UC_Production_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.ProductionDataGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
