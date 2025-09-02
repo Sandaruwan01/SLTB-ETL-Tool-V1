@@ -722,12 +722,11 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
 
         private void SaveExportData()
         {
-            // Ask for confirmation before saving
             DialogResult result = MessageBox.Show("Are you sure you want to save the data to the database?",
                 "Confirm Save", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result != DialogResult.Yes)
-                return; // Cancel the operation
+                return;
 
             string connStr = "Data Source=SLTBDataV1.db;Version=3;";
             int insertedCount = 0;
@@ -740,12 +739,11 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
                 using (SQLiteCommand cmd = new SQLiteCommand(conn))
                 {
                     cmd.CommandText = @"INSERT OR IGNORE INTO ExportDataV1 
-        (Country,ApplicantName,ExportType,Process,Package,HSCode,Qty,Value,ShipmentDate,Vessel,
-        Deliveryterms,ConsigneeName ) 
-        VALUES (@Country, @ApplicantName, @ExportType, @Process, @Package, @HSCode, @Qty, @Value,
-        @ShipmentDate, @Vessel, @DeliveryTerms, @ConsigneeName);";
+                                        (Country, ApplicantName, ExportType, Process, Package, HSCode, Qty, Value, ShipmentDate, Vessel, DeliveryTerms, ConsigneeName) 
+                                        VALUES (@Country, @ApplicantName, @ExportType, @Process, @Package, @HSCode, @Qty, @Value, @ShipmentDate, @Vessel, @DeliveryTerms, @ConsigneeName);";
+                    cmd.Transaction = transaction;
 
-                    // Add parameters once
+                    // Define parameters once
                     cmd.Parameters.Add("@Country", DbType.String);
                     cmd.Parameters.Add("@ApplicantName", DbType.String);
                     cmd.Parameters.Add("@ExportType", DbType.String);
@@ -754,11 +752,10 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
                     cmd.Parameters.Add("@HSCode", DbType.String);
                     cmd.Parameters.Add("@Qty", DbType.Double);
                     cmd.Parameters.Add("@Value", DbType.Double);
-                    cmd.Parameters.Add("@ShipmentDate", DbType.Date);
+                    cmd.Parameters.Add("@ShipmentDate", DbType.String);  // store as text (yyyy-MM-dd)
                     cmd.Parameters.Add("@Vessel", DbType.String);
                     cmd.Parameters.Add("@DeliveryTerms", DbType.String);
                     cmd.Parameters.Add("@ConsigneeName", DbType.String);
-
 
                     foreach (DataGridViewRow row in getDataGrid.Rows)
                     {
@@ -766,25 +763,33 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
 
                         totalRows++;
 
+                        cmd.Parameters["@Country"].Value = row.Cells["Country"].Value ?? DBNull.Value;
+                        cmd.Parameters["@ApplicantName"].Value = row.Cells["ApplicantName"].Value ?? DBNull.Value;
+                        cmd.Parameters["@ExportType"].Value = row.Cells["ExportType"].Value ?? DBNull.Value;
+                        cmd.Parameters["@Process"].Value = row.Cells["Process"].Value ?? DBNull.Value;
+                        cmd.Parameters["@Package"].Value = row.Cells["Package"].Value ?? DBNull.Value;
+                        cmd.Parameters["@HSCode"].Value = row.Cells["HSCode"].Value ?? DBNull.Value;
+                        cmd.Parameters["@Qty"].Value = row.Cells["Qty"].Value ?? DBNull.Value;
+                        cmd.Parameters["@Value"].Value = row.Cells["Value"].Value ?? DBNull.Value;
 
-                        cmd.Parameters["@Country"].Value = row.Cells["Country"].Value;
-                        cmd.Parameters["@ApplicantName"].Value = row.Cells["ApplicantName"].Value;
-                        cmd.Parameters["@ExportType"].Value = row.Cells["ExportType"].Value;
-                        cmd.Parameters["@Process"].Value = row.Cells["Process"].Value;
-                        cmd.Parameters["@Package"].Value = row.Cells["Package"].Value;
-                        cmd.Parameters["@HSCode"].Value = row.Cells["HSCode"].Value;
-                        cmd.Parameters["@Qty"].Value = row.Cells["Qty"].Value;
-                        cmd.Parameters["@Value"].Value = row.Cells["Value"].Value;
-                        cmd.Parameters["@ShipmentDate"].Value = row.Cells["ShipmentDate"].Value;
-                        cmd.Parameters["@Vessel"].Value = row.Cells["Vessel"].Value;
-                        cmd.Parameters["@DeliveryTerms"].Value = row.Cells["DeliveryTerms"].Value;
-                        cmd.Parameters["@ConsigneeName"].Value = row.Cells["ConsigneeName"].Value;
-                       
+                        // Handle date properly
+                        if (row.Cells["ShipmentDate"].Value != null && DateTime.TryParse(row.Cells["ShipmentDate"].Value.ToString(), out DateTime date))
+                        {
+                            cmd.Parameters["@ShipmentDate"].Value = date.ToString("yyyy-MM-dd");
+                        }
+                        else
+                        {
+                            cmd.Parameters["@ShipmentDate"].Value = DBNull.Value;
+                        }
 
-                        insertedCount += cmd.ExecuteNonQuery(); // 1 = inserted, 0 = ignored
+                        cmd.Parameters["@Vessel"].Value = row.Cells["Vessel"].Value ?? DBNull.Value;
+                        cmd.Parameters["@DeliveryTerms"].Value = row.Cells["DeliveryTerms"].Value ?? DBNull.Value;
+                        cmd.Parameters["@ConsigneeName"].Value = row.Cells["ConsigneeName"].Value ?? DBNull.Value;
+
+                        insertedCount += cmd.ExecuteNonQuery();
                     }
 
-
+                    transaction.Commit(); // ✅ commit changes
                 }
             }
 
@@ -793,6 +798,7 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
             MessageBox.Show($"Save completed!\n\nInserted: {insertedCount} rows\nIgnored (duplicates): {ignoredCount} rows",
                 "Operation Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
 
     }
 }

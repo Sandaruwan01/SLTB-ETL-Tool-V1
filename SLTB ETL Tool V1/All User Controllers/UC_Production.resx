@@ -224,4 +224,20 @@
   <metadata name="ProductionElipse.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="btnSaveAsExcel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAmVJREFUaEPt
+        l89L02Ecx72306Jv8x+w1EMFwbagXEE1uwgxBYkORQ0xobUa2KlhEEZYjsrw0CEKIhA6WFREB/txMAoP
+        gnQJsUN1qLX1O+f2kecBR7wfoe/ns1lP8LzgBeP5PoPXe4zBGhocDofjv2TNcGefl0sUvVyCuDY/PiWx
+        2Pwk24sdYrxc4jOG+XWZOJ9mC9ghBqM4mmH+xQ4xGMURozhihxiM4ohRHLFDDEZxxCiO2CEGozhiFEfs
+        EINRHDGKI3YYrEpHU4F05EsgHaGaPBGl4Om4Eb/iA+oSv+TxKAWyOw0bxw6LxV4DI6JW3QA3IEJef4zm
+        8u9Ikbl9vnq+fqCDvs//pB+lX7ThTKfxPmsGKLuuZvSAD18/UejkDn126+UDfZa9e8W4b90A5f2ZZzp4
+        4N4obbtwgCqVCr16P0vBzFbjrpUDNp/tpvmFEuW/Fenp6yk9pmP0qHHP2gHKixM3dbhibOqh8dzQtgHX
+        J8erA248v2M8R9fubjEMjuwVi70GGPC77Zd79ff+xZsZmpyd1q/3jBwx7lk5wOvfTnMf3+pPftelHmob
+        PqgHqDP1DO9bN2Do0TUdr36Jls7Gpyf0mXqG960asGVoP5XKC1SulCl8bl/1fNNglz5Xqjv4PmsG1CLG
+        uwF/AgNqFeP/xoD6/aFJhY34lR9wLNpXlxGpMK3u3kiheIthU09MLPaKwSiO65JtYrFDDEZxxCiO2CEG
+        ozhiFEfsEINRHDGKI3aIwSiOGMURO8RgFEeM4ogdYkLx1gKG+RWjGOaxQ0xje2tSOmKZMD8WmpKxQ9jh
+        cDgc/5ZF1Hq34+SLSXQAAAAASUVORK5CYII=
+</value>
+  </data>
 </root>
