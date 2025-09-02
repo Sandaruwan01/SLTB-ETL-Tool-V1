@@ -36,14 +36,15 @@
             this.btnProductionReset = new Guna.UI2.WinForms.Guna2Button();
             this.btnProductionGo = new Guna.UI2.WinForms.Guna2Button();
             this.btnProductionSearch = new Guna.UI2.WinForms.Guna2Button();
-            this.ProductionSearchBox = new Guna.UI2.WinForms.Guna2TextBox();
+            this.prodMonth = new Guna.UI2.WinForms.Guna2TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.dtProductionTo = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.dtProductionFrom = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.ProductionElipse = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.btnSaveAsExcel = new Guna.UI2.WinForms.Guna2Button();
+            this.prodYear = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ProductionDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,7 +90,7 @@
             this.ProductionDataGrid.ReadOnly = true;
             this.ProductionDataGrid.RowHeadersWidth = 51;
             this.ProductionDataGrid.RowTemplate.Height = 24;
-            this.ProductionDataGrid.Size = new System.Drawing.Size(934, 371);
+            this.ProductionDataGrid.Size = new System.Drawing.Size(934, 358);
             this.ProductionDataGrid.TabIndex = 52;
             this.ProductionDataGrid.VirtualMode = true;
             // 
@@ -115,11 +116,12 @@
             this.btnProductionReset.Image = ((System.Drawing.Image)(resources.GetObject("btnProductionReset.Image")));
             this.btnProductionReset.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnProductionReset.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnProductionReset.Location = new System.Drawing.Point(484, 169);
+            this.btnProductionReset.Location = new System.Drawing.Point(540, 165);
             this.btnProductionReset.Name = "btnProductionReset";
-            this.btnProductionReset.Size = new System.Drawing.Size(150, 36);
+            this.btnProductionReset.Size = new System.Drawing.Size(174, 40);
             this.btnProductionReset.TabIndex = 51;
-            this.btnProductionReset.Text = "Reset";
+            this.btnProductionReset.Text = "View All";
+            this.btnProductionReset.Click += new System.EventHandler(this.btnProductionReset_Click);
             // 
             // btnProductionGo
             // 
@@ -143,11 +145,12 @@
             this.btnProductionGo.Image = ((System.Drawing.Image)(resources.GetObject("btnProductionGo.Image")));
             this.btnProductionGo.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnProductionGo.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnProductionGo.Location = new System.Drawing.Point(484, 123);
+            this.btnProductionGo.Location = new System.Drawing.Point(350, 165);
             this.btnProductionGo.Name = "btnProductionGo";
             this.btnProductionGo.Size = new System.Drawing.Size(150, 39);
             this.btnProductionGo.TabIndex = 50;
             this.btnProductionGo.Text = "Go";
+            this.btnProductionGo.Click += new System.EventHandler(this.btnProductionGo_Click);
             // 
             // btnProductionSearch
             // 
@@ -177,31 +180,32 @@
             this.btnProductionSearch.Size = new System.Drawing.Size(222, 39);
             this.btnProductionSearch.TabIndex = 49;
             this.btnProductionSearch.Text = "Go";
+            this.btnProductionSearch.Click += new System.EventHandler(this.btnProductionSearch_Click);
             // 
-            // ProductionSearchBox
+            // prodMonth
             // 
-            this.ProductionSearchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductionSearchBox.BorderColor = System.Drawing.Color.White;
-            this.ProductionSearchBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ProductionSearchBox.DefaultText = "";
-            this.ProductionSearchBox.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ProductionSearchBox.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ProductionSearchBox.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ProductionSearchBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ProductionSearchBox.FillColor = System.Drawing.Color.Transparent;
-            this.ProductionSearchBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ProductionSearchBox.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ProductionSearchBox.ForeColor = System.Drawing.Color.White;
-            this.ProductionSearchBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ProductionSearchBox.Location = new System.Drawing.Point(768, 123);
-            this.ProductionSearchBox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.ProductionSearchBox.Name = "ProductionSearchBox";
-            this.ProductionSearchBox.PlaceholderForeColor = System.Drawing.Color.WhiteSmoke;
-            this.ProductionSearchBox.PlaceholderText = "Search Anything";
-            this.ProductionSearchBox.SelectedText = "";
-            this.ProductionSearchBox.Size = new System.Drawing.Size(222, 38);
-            this.ProductionSearchBox.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
-            this.ProductionSearchBox.TabIndex = 48;
+            this.prodMonth.BorderColor = System.Drawing.Color.White;
+            this.prodMonth.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.prodMonth.DefaultText = "";
+            this.prodMonth.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.prodMonth.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.prodMonth.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.prodMonth.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.prodMonth.FillColor = System.Drawing.Color.Transparent;
+            this.prodMonth.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.prodMonth.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.prodMonth.ForeColor = System.Drawing.Color.White;
+            this.prodMonth.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.prodMonth.Location = new System.Drawing.Point(172, 166);
+            this.prodMonth.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.prodMonth.Name = "prodMonth";
+            this.prodMonth.PlaceholderForeColor = System.Drawing.Color.WhiteSmoke;
+            this.prodMonth.PlaceholderText = "Month";
+            this.prodMonth.SelectedText = "";
+            this.prodMonth.Size = new System.Drawing.Size(136, 38);
+            this.prodMonth.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
+            this.prodMonth.TabIndex = 48;
+            this.prodMonth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
             // 
@@ -211,45 +215,9 @@
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(98, 177);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 28);
+            this.label4.Size = new System.Drawing.Size(71, 28);
             this.label4.TabIndex = 47;
-            this.label4.Text = "To";
-            // 
-            // dtProductionTo
-            // 
-            this.dtProductionTo.BackColor = System.Drawing.Color.DodgerBlue;
-            this.dtProductionTo.Checked = true;
-            this.dtProductionTo.CheckedState.FillColor = System.Drawing.Color.DodgerBlue;
-            this.dtProductionTo.CheckedState.ForeColor = System.Drawing.Color.White;
-            this.dtProductionTo.FillColor = System.Drawing.Color.DodgerBlue;
-            this.dtProductionTo.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtProductionTo.ForeColor = System.Drawing.Color.White;
-            this.dtProductionTo.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtProductionTo.Location = new System.Drawing.Point(136, 169);
-            this.dtProductionTo.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtProductionTo.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtProductionTo.Name = "dtProductionTo";
-            this.dtProductionTo.Size = new System.Drawing.Size(305, 36);
-            this.dtProductionTo.TabIndex = 46;
-            this.dtProductionTo.Value = new System.DateTime(2025, 7, 29, 14, 48, 58, 754);
-            // 
-            // dtProductionFrom
-            // 
-            this.dtProductionFrom.BackColor = System.Drawing.Color.DodgerBlue;
-            this.dtProductionFrom.Checked = true;
-            this.dtProductionFrom.CheckedState.FillColor = System.Drawing.Color.DodgerBlue;
-            this.dtProductionFrom.CheckedState.ForeColor = System.Drawing.Color.White;
-            this.dtProductionFrom.FillColor = System.Drawing.Color.DodgerBlue;
-            this.dtProductionFrom.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtProductionFrom.ForeColor = System.Drawing.Color.White;
-            this.dtProductionFrom.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtProductionFrom.Location = new System.Drawing.Point(136, 126);
-            this.dtProductionFrom.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtProductionFrom.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtProductionFrom.Name = "dtProductionFrom";
-            this.dtProductionFrom.Size = new System.Drawing.Size(305, 36);
-            this.dtProductionFrom.TabIndex = 45;
-            this.dtProductionFrom.Value = new System.DateTime(2025, 7, 29, 14, 48, 58, 754);
+            this.label4.Text = "Month";
             // 
             // label3
             // 
@@ -259,9 +227,9 @@
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(72, 134);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 28);
+            this.label3.Size = new System.Drawing.Size(94, 28);
             this.label3.TabIndex = 44;
-            this.label3.Text = "From";
+            this.label3.Text = "Type Year";
             // 
             // label1
             // 
@@ -291,21 +259,102 @@
             // 
             this.ProductionElipse.TargetControl = this;
             // 
+            // btnSaveAsExcel
+            // 
+            this.btnSaveAsExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveAsExcel.Animated = true;
+            this.btnSaveAsExcel.AnimatedGIF = true;
+            this.btnSaveAsExcel.BackColor = System.Drawing.Color.Black;
+            this.btnSaveAsExcel.BorderRadius = 10;
+            this.btnSaveAsExcel.BorderThickness = 1;
+            this.btnSaveAsExcel.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSaveAsExcel.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSaveAsExcel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSaveAsExcel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSaveAsExcel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnSaveAsExcel.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveAsExcel.ForeColor = System.Drawing.Color.Black;
+            this.btnSaveAsExcel.HoverState.BorderColor = System.Drawing.Color.White;
+            this.btnSaveAsExcel.HoverState.FillColor = System.Drawing.Color.Cyan;
+            this.btnSaveAsExcel.HoverState.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveAsExcel.HoverState.ForeColor = System.Drawing.Color.Black;
+            this.btnSaveAsExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveAsExcel.Image")));
+            this.btnSaveAsExcel.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnSaveAsExcel.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnSaveAsExcel.Location = new System.Drawing.Point(484, 611);
+            this.btnSaveAsExcel.Name = "btnSaveAsExcel";
+            this.btnSaveAsExcel.Size = new System.Drawing.Size(239, 40);
+            this.btnSaveAsExcel.TabIndex = 55;
+            this.btnSaveAsExcel.Text = "Save As Excel";
+            this.btnSaveAsExcel.Click += new System.EventHandler(this.btnSaveAsExcel_Click);
+            // 
+            // prodYear
+            // 
+            this.prodYear.BorderColor = System.Drawing.Color.White;
+            this.prodYear.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.prodYear.DefaultText = "";
+            this.prodYear.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.prodYear.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.prodYear.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.prodYear.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.prodYear.FillColor = System.Drawing.Color.Transparent;
+            this.prodYear.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.prodYear.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.prodYear.ForeColor = System.Drawing.Color.White;
+            this.prodYear.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.prodYear.Location = new System.Drawing.Point(172, 124);
+            this.prodYear.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.prodYear.Name = "prodYear";
+            this.prodYear.PlaceholderForeColor = System.Drawing.Color.WhiteSmoke;
+            this.prodYear.PlaceholderText = "Year";
+            this.prodYear.SelectedText = "";
+            this.prodYear.Size = new System.Drawing.Size(136, 38);
+            this.prodYear.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
+            this.prodYear.TabIndex = 48;
+            this.prodYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.BorderColor = System.Drawing.Color.White;
+            this.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtSearch.DefaultText = "";
+            this.txtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSearch.FillColor = System.Drawing.Color.Transparent;
+            this.txtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSearch.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.ForeColor = System.Drawing.Color.White;
+            this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSearch.Location = new System.Drawing.Point(768, 120);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.PlaceholderForeColor = System.Drawing.Color.WhiteSmoke;
+            this.txtSearch.PlaceholderText = "Search Anything";
+            this.txtSearch.SelectedText = "";
+            this.txtSearch.Size = new System.Drawing.Size(222, 38);
+            this.txtSearch.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
+            this.txtSearch.TabIndex = 48;
+            this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // UC_Production
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.btnSaveAsExcel);
             this.Controls.Add(this.lblProductionRowCount);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.ProductionDataGrid);
             this.Controls.Add(this.btnProductionReset);
             this.Controls.Add(this.btnProductionGo);
             this.Controls.Add(this.btnProductionSearch);
-            this.Controls.Add(this.ProductionSearchBox);
+            this.Controls.Add(this.prodYear);
+            this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.prodMonth);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.dtProductionTo);
-            this.Controls.Add(this.dtProductionFrom);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
@@ -326,13 +375,14 @@
         private Guna.UI2.WinForms.Guna2Button btnProductionReset;
         private Guna.UI2.WinForms.Guna2Button btnProductionGo;
         private Guna.UI2.WinForms.Guna2Button btnProductionSearch;
-        private Guna.UI2.WinForms.Guna2TextBox ProductionSearchBox;
+        private Guna.UI2.WinForms.Guna2TextBox prodMonth;
         private System.Windows.Forms.Label label4;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtProductionTo;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtProductionFrom;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private Guna.UI2.WinForms.Guna2Elipse ProductionElipse;
+        private Guna.UI2.WinForms.Guna2Button btnSaveAsExcel;
+        private Guna.UI2.WinForms.Guna2TextBox prodYear;
+        private Guna.UI2.WinForms.Guna2TextBox txtSearch;
     }
 }

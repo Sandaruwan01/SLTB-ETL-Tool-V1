@@ -44,6 +44,10 @@
             this.SaleDataElips = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.lblSaleRowCount = new System.Windows.Forms.Label();
+            this.btnSaveAsExcel = new Guna.UI2.WinForms.Guna2Button();
+            this.FilterSaleType = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnFilter = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.SaleDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,7 +77,7 @@
             this.dtSaleTo.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtSaleTo.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtSaleTo.Name = "dtSaleTo";
-            this.dtSaleTo.Size = new System.Drawing.Size(305, 36);
+            this.dtSaleTo.Size = new System.Drawing.Size(265, 36);
             this.dtSaleTo.TabIndex = 22;
             this.dtSaleTo.Value = new System.DateTime(2025, 7, 29, 14, 48, 58, 754);
             // 
@@ -91,7 +95,7 @@
             this.dtSaleFrom.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtSaleFrom.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtSaleFrom.Name = "dtSaleFrom";
-            this.dtSaleFrom.Size = new System.Drawing.Size(305, 36);
+            this.dtSaleFrom.Size = new System.Drawing.Size(265, 36);
             this.dtSaleFrom.TabIndex = 21;
             this.dtSaleFrom.Value = new System.DateTime(2025, 7, 29, 14, 48, 58, 754);
             // 
@@ -146,15 +150,16 @@
             this.SearchBox.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchBox.ForeColor = System.Drawing.Color.White;
             this.SearchBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.SearchBox.Location = new System.Drawing.Point(768, 124);
+            this.SearchBox.Location = new System.Drawing.Point(815, 124);
             this.SearchBox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.SearchBox.Name = "SearchBox";
             this.SearchBox.PlaceholderForeColor = System.Drawing.Color.WhiteSmoke;
             this.SearchBox.PlaceholderText = "Search Anything";
             this.SearchBox.SelectedText = "";
-            this.SearchBox.Size = new System.Drawing.Size(222, 38);
+            this.SearchBox.Size = new System.Drawing.Size(175, 38);
             this.SearchBox.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.SearchBox.TabIndex = 24;
+            this.SearchBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnSearch
             // 
@@ -179,11 +184,12 @@
             this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
             this.btnSearch.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSearch.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnSearch.Location = new System.Drawing.Point(768, 168);
+            this.btnSearch.Location = new System.Drawing.Point(815, 168);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(222, 39);
+            this.btnSearch.Size = new System.Drawing.Size(175, 39);
             this.btnSearch.TabIndex = 25;
             this.btnSearch.Text = "Go";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnSaleGo
             // 
@@ -207,7 +213,7 @@
             this.btnSaleGo.Image = ((System.Drawing.Image)(resources.GetObject("btnSaleGo.Image")));
             this.btnSaleGo.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSaleGo.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnSaleGo.Location = new System.Drawing.Point(486, 123);
+            this.btnSaleGo.Location = new System.Drawing.Point(442, 123);
             this.btnSaleGo.Name = "btnSaleGo";
             this.btnSaleGo.Size = new System.Drawing.Size(150, 39);
             this.btnSaleGo.TabIndex = 26;
@@ -236,7 +242,7 @@
             this.btnSaleReset.Image = ((System.Drawing.Image)(resources.GetObject("btnSaleReset.Image")));
             this.btnSaleReset.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSaleReset.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnSaleReset.Location = new System.Drawing.Point(486, 171);
+            this.btnSaleReset.Location = new System.Drawing.Point(442, 171);
             this.btnSaleReset.Name = "btnSaleReset";
             this.btnSaleReset.Size = new System.Drawing.Size(150, 36);
             this.btnSaleReset.TabIndex = 27;
@@ -259,7 +265,7 @@
             this.SaleDataGrid.ReadOnly = true;
             this.SaleDataGrid.RowHeadersWidth = 51;
             this.SaleDataGrid.RowTemplate.Height = 24;
-            this.SaleDataGrid.Size = new System.Drawing.Size(934, 358);
+            this.SaleDataGrid.Size = new System.Drawing.Size(934, 340);
             this.SaleDataGrid.TabIndex = 28;
             this.SaleDataGrid.VirtualMode = true;
             // 
@@ -293,11 +299,101 @@
             this.lblSaleRowCount.TabIndex = 30;
             this.lblSaleRowCount.Text = "0";
             // 
+            // btnSaveAsExcel
+            // 
+            this.btnSaveAsExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveAsExcel.Animated = true;
+            this.btnSaveAsExcel.AnimatedGIF = true;
+            this.btnSaveAsExcel.BackColor = System.Drawing.Color.Black;
+            this.btnSaveAsExcel.BorderRadius = 10;
+            this.btnSaveAsExcel.BorderThickness = 1;
+            this.btnSaveAsExcel.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSaveAsExcel.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSaveAsExcel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSaveAsExcel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSaveAsExcel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnSaveAsExcel.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveAsExcel.ForeColor = System.Drawing.Color.Black;
+            this.btnSaveAsExcel.HoverState.BorderColor = System.Drawing.Color.White;
+            this.btnSaveAsExcel.HoverState.FillColor = System.Drawing.Color.Cyan;
+            this.btnSaveAsExcel.HoverState.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveAsExcel.HoverState.ForeColor = System.Drawing.Color.Black;
+            this.btnSaveAsExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveAsExcel.Image")));
+            this.btnSaveAsExcel.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnSaveAsExcel.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnSaveAsExcel.Location = new System.Drawing.Point(486, 601);
+            this.btnSaveAsExcel.Name = "btnSaveAsExcel";
+            this.btnSaveAsExcel.Size = new System.Drawing.Size(239, 40);
+            this.btnSaveAsExcel.TabIndex = 38;
+            this.btnSaveAsExcel.Text = "Save As Excel";
+            this.btnSaveAsExcel.Click += new System.EventHandler(this.btnSaveAsExcel_Click);
+            // 
+            // FilterSaleType
+            // 
+            this.FilterSaleType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.FilterSaleType.BackColor = System.Drawing.Color.Transparent;
+            this.FilterSaleType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.FilterSaleType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.FilterSaleType.FillColor = System.Drawing.Color.Black;
+            this.FilterSaleType.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.FilterSaleType.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.FilterSaleType.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.FilterSaleType.ForeColor = System.Drawing.Color.White;
+            this.FilterSaleType.ItemHeight = 30;
+            this.FilterSaleType.Items.AddRange(new object[] {
+            "Auction Sale",
+            "Direct Sale",
+            "Private Sale"});
+            this.FilterSaleType.Location = new System.Drawing.Point(610, 126);
+            this.FilterSaleType.Name = "FilterSaleType";
+            this.FilterSaleType.Size = new System.Drawing.Size(184, 36);
+            this.FilterSaleType.TabIndex = 39;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(615, 85);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(169, 28);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "Filter By Sale Type";
+            // 
+            // btnFilter
+            // 
+            this.btnFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFilter.AnimatedGIF = true;
+            this.btnFilter.BorderColor = System.Drawing.Color.White;
+            this.btnFilter.BorderRadius = 10;
+            this.btnFilter.BorderThickness = 1;
+            this.btnFilter.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnFilter.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnFilter.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnFilter.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnFilter.FillColor = System.Drawing.Color.Black;
+            this.btnFilter.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFilter.ForeColor = System.Drawing.Color.White;
+            this.btnFilter.HoverState.FillColor = System.Drawing.Color.Lime;
+            this.btnFilter.Image = ((System.Drawing.Image)(resources.GetObject("btnFilter.Image")));
+            this.btnFilter.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnFilter.Location = new System.Drawing.Point(610, 179);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(184, 28);
+            this.btnFilter.TabIndex = 40;
+            this.btnFilter.Text = "Filter";
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
+            // 
             // UC_GetSaleData
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.btnFilter);
+            this.Controls.Add(this.FilterSaleType);
+            this.Controls.Add(this.btnSaveAsExcel);
             this.Controls.Add(this.lblSaleRowCount);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.SaleDataGrid);
@@ -309,6 +405,7 @@
             this.Controls.Add(this.dtSaleTo);
             this.Controls.Add(this.dtSaleFrom);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Name = "UC_GetSaleData";
@@ -336,5 +433,9 @@
         private Guna.UI2.WinForms.Guna2Elipse SaleDataElips;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblSaleRowCount;
+        private Guna.UI2.WinForms.Guna2Button btnSaveAsExcel;
+        private Guna.UI2.WinForms.Guna2ComboBox FilterSaleType;
+        private System.Windows.Forms.Label label6;
+        private Guna.UI2.WinForms.Guna2Button btnFilter;
     }
 }

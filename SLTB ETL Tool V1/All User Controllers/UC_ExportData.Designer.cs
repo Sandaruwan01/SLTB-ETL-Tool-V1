@@ -44,6 +44,7 @@
             this.lblExportRowCount = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.ExportElipse = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.btnSaveAsExcel = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.ExportDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +64,7 @@
             this.ExportDataGrid.ReadOnly = true;
             this.ExportDataGrid.RowHeadersWidth = 51;
             this.ExportDataGrid.RowTemplate.Height = 24;
-            this.ExportDataGrid.Size = new System.Drawing.Size(934, 371);
+            this.ExportDataGrid.Size = new System.Drawing.Size(934, 352);
             this.ExportDataGrid.TabIndex = 39;
             this.ExportDataGrid.VirtualMode = true;
             // 
@@ -94,6 +95,7 @@
             this.btnExportReset.Size = new System.Drawing.Size(150, 36);
             this.btnExportReset.TabIndex = 38;
             this.btnExportReset.Text = "Reset";
+            this.btnExportReset.Click += new System.EventHandler(this.btnExportReset_Click);
             // 
             // btnExportGo
             // 
@@ -122,6 +124,7 @@
             this.btnExportGo.Size = new System.Drawing.Size(150, 39);
             this.btnExportGo.TabIndex = 37;
             this.btnExportGo.Text = "Go";
+            this.btnExportGo.Click += new System.EventHandler(this.btnExportGo_Click);
             // 
             // btnExportSearch
             // 
@@ -151,6 +154,7 @@
             this.btnExportSearch.Size = new System.Drawing.Size(222, 39);
             this.btnExportSearch.TabIndex = 36;
             this.btnExportSearch.Text = "Go";
+            this.btnExportSearch.Click += new System.EventHandler(this.btnExportSearch_Click);
             // 
             // ExportSearchBox
             // 
@@ -291,6 +295,35 @@
             // 
             this.ExportElipse.TargetControl = this;
             // 
+            // btnSaveAsExcel
+            // 
+            this.btnSaveAsExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveAsExcel.Animated = true;
+            this.btnSaveAsExcel.AnimatedGIF = true;
+            this.btnSaveAsExcel.BackColor = System.Drawing.Color.Black;
+            this.btnSaveAsExcel.BorderRadius = 10;
+            this.btnSaveAsExcel.BorderThickness = 1;
+            this.btnSaveAsExcel.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSaveAsExcel.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSaveAsExcel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSaveAsExcel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSaveAsExcel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnSaveAsExcel.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveAsExcel.ForeColor = System.Drawing.Color.Black;
+            this.btnSaveAsExcel.HoverState.BorderColor = System.Drawing.Color.White;
+            this.btnSaveAsExcel.HoverState.FillColor = System.Drawing.Color.Cyan;
+            this.btnSaveAsExcel.HoverState.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveAsExcel.HoverState.ForeColor = System.Drawing.Color.Black;
+            this.btnSaveAsExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveAsExcel.Image")));
+            this.btnSaveAsExcel.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnSaveAsExcel.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnSaveAsExcel.Location = new System.Drawing.Point(484, 602);
+            this.btnSaveAsExcel.Name = "btnSaveAsExcel";
+            this.btnSaveAsExcel.Size = new System.Drawing.Size(239, 40);
+            this.btnSaveAsExcel.TabIndex = 37;
+            this.btnSaveAsExcel.Text = "Save As Excel";
+            this.btnSaveAsExcel.Click += new System.EventHandler(this.btnSaveAsExcel_Click);
+            // 
             // UC_ExportData
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -300,6 +333,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.ExportDataGrid);
             this.Controls.Add(this.btnExportReset);
+            this.Controls.Add(this.btnSaveAsExcel);
             this.Controls.Add(this.btnExportGo);
             this.Controls.Add(this.btnExportSearch);
             this.Controls.Add(this.ExportSearchBox);
@@ -334,5 +368,6 @@
         private System.Windows.Forms.Label lblExportRowCount;
         private System.Windows.Forms.Label label5;
         private Guna.UI2.WinForms.Guna2Elipse ExportElipse;
+        private Guna.UI2.WinForms.Guna2Button btnSaveAsExcel;
     }
 }
