@@ -385,47 +385,48 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
 
             string connectionString = "Server=192.168.15.7;Database=SLTB;User Id=sa;Password=sa@123;TrustServerCertificate=True;";
 
-            string query = @" SELECT Distinct
-                            D.Name AS Country,
-                            s.ApplicantName,
-                            MC.CusYear,
-                            MC.CusMonth,
-                            CASE WHEN IsExport = 1 THEN 'Export' ELSE 'ReExport' END AS ExportType,
-                            HSP.Name AS Process,
-                            HPT.Name AS Package,
-                            Cod.Code AS HSCode,
-                            MC.CusQty AS Qty,
-                            MC.CusValue AS Value,
-                            E.ShipmentDate,
-                            E.Vessel,
-                            E.DeliveryTerms,
-                            E.ConsigneeName
-                            FROM MonthlyCustoms MC
-                            INNER JOIN HSCode Cod
+            string query = @" SELECT DISTINCT
+                                D.Name AS Country,
+                                s.ApplicantName,
+                                MC.CusYear,
+                                MC.CusMonth,
+                                CASE WHEN IsExport = 1 THEN 'Export' ELSE 'ReExport' END AS ExportType,
+                                HSP.Name AS Process,
+                                HPT.Name AS Package,
+                                Cod.Code AS HSCode,
+                                MC.CusQty AS Qty,
+                                MC.CusValue AS Value,
+                                E.ShipmentDate,
+                                MONTH(E.ShipmentDate) AS ShipmentMonth,    
+                                E.Vessel,
+                                E.DeliveryTerms,
+                                E.ConsigneeName
+                                FROM MonthlyCustoms MC
+                                INNER JOIN HSCode Cod
                                 ON MC.HSCodeID = Cod.HSCodeID
-                            INNER JOIN (SELECT * FROM HSCategory WHERE HSProcessID IS NOT NULL) HSC
-                                ON Cod.HSCodeID = HSC.HSCodeID
-                            INNER JOIN HSProcess HSP
-                                ON HSC.HSProcessID = HSP.HSProcessID
-                            INNER JOIN HSPackageType HPT
-                                ON HSC.HSPackingID = HPT.HSPackageTypeID
-                            INNER JOIN Destination D
-                                ON D.DestinationID = MC.DestinationID
-                            LEFT JOIN (
-                                SELECT s.ApplicantName, e.ExporterID
-                                FROM SLTBClient s
+                                INNER JOIN (SELECT * FROM HSCategory WHERE HSProcessID IS NOT NULL) HSC
+                                    ON Cod.HSCodeID = HSC.HSCodeID
+                                INNER JOIN HSProcess HSP
+                                    ON HSC.HSProcessID = HSP.HSProcessID
+                                INNER JOIN HSPackageType HPT
+                                    ON HSC.HSPackingID = HPT.HSPackageTypeID
+                                INNER JOIN Destination D
+                                    ON D.DestinationID = MC.DestinationID
+                                LEFT JOIN (
+                                    SELECT s.ApplicantName, e.ExporterID
+                                    FROM SLTBClient s
                                 INNER JOIN Exporter e ON s.SLTBClientID = e.SLTBClientID
-                                ) s ON s.ExporterID = MC.ExporterID
+                                    ) s ON s.ExporterID = MC.ExporterID
                                 INNER JOIN Export E
-                                ON E.ExporterID = MC.ExporterID
+                                    ON E.ExporterID = MC.ExporterID
                                 AND E.DestinationID = MC.DestinationID
                                 AND MC.CusYear = YEAR(E.ShipmentDate)
                                 AND MC.CusMonth = MONTH(E.ShipmentDate)
-                                WHERE
-                                 E.ShipmentDate >= @FromDate 
-                                 AND E.ShipmentDate <= @ToDate 
-                                 AND HPT.HSPackageTypeID <> 7
-                                    ORDER BY ShipmentDate;";
+                                    WHERE
+                                E.ShipmentDate >= @FromDate 
+                                AND E.ShipmentDate <= @ToDate 
+                                AND HPT.HSPackageTypeID <> 7
+                                ORDER BY E.ShipmentDate;";
 
             try
             {
@@ -739,8 +740,8 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
                 using (SQLiteCommand cmd = new SQLiteCommand(conn))
                 {
                     cmd.CommandText = @"INSERT OR IGNORE INTO ExportDataV1 
-                                        (Country, ApplicantName, ExportType, Process, Package, HSCode, Qty, Value, ShipmentDate, Vessel, DeliveryTerms, ConsigneeName) 
-                                        VALUES (@Country, @ApplicantName, @ExportType, @Process, @Package, @HSCode, @Qty, @Value, @ShipmentDate, @Vessel, @DeliveryTerms, @ConsigneeName);";
+                                        (Country, ApplicantName, ExportType, Process, Package, HSCode, Qty, Value, ShipmentDate, Month, Vessel, DeliveryTerms, ConsigneeName) 
+                                        VALUES (@Country, @ApplicantName, @ExportType, @Process, @Package, @HSCode, @Qty, @Value, @ShipmentDate, @Month, @Vessel, @DeliveryTerms, @ConsigneeName);";
                     cmd.Transaction = transaction;
 
                     // Define parameters once
@@ -752,7 +753,8 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
                     cmd.Parameters.Add("@HSCode", DbType.String);
                     cmd.Parameters.Add("@Qty", DbType.Double);
                     cmd.Parameters.Add("@Value", DbType.Double);
-                    cmd.Parameters.Add("@ShipmentDate", DbType.String);  // store as text (yyyy-MM-dd)
+                    cmd.Parameters.Add("@ShipmentDate", DbType.String);  // store as text (yyyy-MM-dd
+                    cmd.Parameters.Add("Month", DbType.Double);
                     cmd.Parameters.Add("@Vessel", DbType.String);
                     cmd.Parameters.Add("@DeliveryTerms", DbType.String);
                     cmd.Parameters.Add("@ConsigneeName", DbType.String);
@@ -781,7 +783,7 @@ namespace SLTB_ETL_Tool_V1.All_User_Controllers
                         {
                             cmd.Parameters["@ShipmentDate"].Value = DBNull.Value;
                         }
-
+                        cmd.Parameters["Month"].Value = row.Cells["Month"].Value ?? DBNull.Value;
                         cmd.Parameters["@Vessel"].Value = row.Cells["Vessel"].Value ?? DBNull.Value;
                         cmd.Parameters["@DeliveryTerms"].Value = row.Cells["DeliveryTerms"].Value ?? DBNull.Value;
                         cmd.Parameters["@ConsigneeName"].Value = row.Cells["ConsigneeName"].Value ?? DBNull.Value;

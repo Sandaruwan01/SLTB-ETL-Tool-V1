@@ -93,3 +93,7 @@ C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1 -base\SLTB ETL Tool V1\bin\Deb
 C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1 -base\SLTB ETL Tool V1\bin\Debug\Microsoft.Bcl.HashCode.xml
 C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1 -base\SLTB ETL Tool V1\bin\Debug\RBush.xml
 C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1 -base\SLTB ETL Tool V1\bin\Debug\SixLabors.Fonts.xml
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1 -base\SLTB ETL Tool V1\bin\Debug\SLTB ETL Tool V1.exe.manifest
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1 -base\SLTB ETL Tool V1\bin\Debug\SLTB ETL Tool V1.application
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1 -base\SLTB ETL Tool V1\obj\Debug\SLTB ETL Tool V1.exe.manifest
+C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1 -base\SLTB ETL Tool V1\obj\Debug\SLTB ETL Tool V1.application

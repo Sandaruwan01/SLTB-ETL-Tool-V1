@@ -44,6 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.HomePnannel = new System.Windows.Forms.Panel();
+            this.uC_Production1 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_Production();
             this.uC_ExportData1 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_ExportData();
             this.uC_GetSaleData1 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_GetSaleData();
             this.uC_GetData1 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_GetData();
@@ -53,7 +54,6 @@
             this.SaleDataElips = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.ExportElipse = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.ProductionElipse = new Guna.UI2.WinForms.Guna2Elipse(this.components);
-            this.uC_Production1 = new SLTB_ETL_Tool_V1.All_User_Controllers.UC_Production();
             this.btnPannel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMini)).BeginInit();
@@ -345,6 +345,18 @@
             this.HomePnannel.Size = new System.Drawing.Size(1048, 669);
             this.HomePnannel.TabIndex = 1;
             // 
+            // uC_Production1
+            // 
+            this.uC_Production1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uC_Production1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.uC_Production1.BackColor = System.Drawing.Color.Black;
+            this.uC_Production1.Location = new System.Drawing.Point(0, 0);
+            this.uC_Production1.Name = "uC_Production1";
+            this.uC_Production1.Size = new System.Drawing.Size(1048, 669);
+            this.uC_Production1.TabIndex = 7;
+            // 
             // uC_ExportData1
             // 
             this.uC_ExportData1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -417,18 +429,6 @@
             // ProductionElipse
             // 
             this.ProductionElipse.TargetControl = this.HomePnannel;
-            // 
-            // uC_Production1
-            // 
-            this.uC_Production1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uC_Production1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.uC_Production1.BackColor = System.Drawing.Color.Black;
-            this.uC_Production1.Location = new System.Drawing.Point(0, 0);
-            this.uC_Production1.Name = "uC_Production1";
-            this.uC_Production1.Size = new System.Drawing.Size(1048, 669);
-            this.uC_Production1.TabIndex = 7;
             // 
             // Form1
             // 
