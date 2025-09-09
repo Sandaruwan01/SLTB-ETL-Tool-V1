@@ -34,12 +34,12 @@ namespace SLTB_ETL_Tool_V1
         private void createTables()
         {
             //remove this before publish
-            //string connectionString = @"Data Source=C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1 -base\SLTB ETL Tool V1\bin\Debug\SLTBDataV1.db; Version=3;";
+            string connectionString = @"Data Source=C:\Users\SANDARUWAN\source\repos\SLTB ETL Tool V1 -base\SLTB ETL Tool V1\bin\Debug\SLTBDataV1.db; Version=3;";
             
 
             //enable this before publish
-            string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "mydatabase.db");
-            string connectionString = $"Data Source={dbPath};Version=3;";
+            // string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "mydatabase.db");
+            //string connectionString = $"Data Source={dbPath};Version=3;";
 
             using (SQLiteConnection conn = new SQLiteConnection(connectionString))
             {
